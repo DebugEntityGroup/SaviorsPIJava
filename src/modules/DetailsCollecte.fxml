@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modules.DetailsCollecteController">
+   <children>
+      <AnchorPane fx:id="navBar" prefHeight="115.0" prefWidth="1366.0" style="-fx-background-color: #d598a3;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="199.0" layoutX="53.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../homepage/images/SaviorsLogo.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="275.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accueil">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="387.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actualités">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="528.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A Propos">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="657.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Button fx:id="exit" layoutX="1326.0" layoutY="7.0" mnemonicParsing="false" onAction="#exitButtonAction" prefHeight="42.0" prefWidth="40.0" style="-fx-background-color: #de2121;" text="X" textFill="WHITE" />
+            <Label layoutX="898.0" layoutY="66.0" text="Bonjour">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" layoutX="980.0" layoutY="66.0" style="-fx-font-weight: bold;">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="logoutBtn" layoutX="1111.0" layoutY="49.0" mnemonicParsing="false" onAction="#disconnectAction" prefHeight="67.0" prefWidth="196.0" style="-fx-background-color: none; -fx-font-weight: bold; -fx-font-size: 20;" text="Se Déconnecter" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="action" layoutX="786.0" layoutY="68.0" onAction="#moduleAction" prefHeight="25.0" prefWidth="77.0" promptText="Action" scaleX="1.75" scaleY="2.0" style="-fx-background-color: none;" />
+            <Button fx:id="saviorsLogo" layoutX="72.0" layoutY="41.0" mnemonicParsing="false" onAction="#saviorsHomepage" prefHeight="69.0" prefWidth="100.0" style="-fx-background-color: none;" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="527.0" layoutY="245.0" style="-fx-font-weight: bold; -fx-font-size: 32;" text="Details de la Collecte" textFill="#2e004b">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="1.0" layoutY="319.0" prefHeight="448.0" prefWidth="1366.0" style="-fx-background-color: #F8F9FA;">
+         <children>
+            <ImageView fitHeight="148.0" fitWidth="344.0" layoutX="132.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/faireUnDon.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="883.0" layoutY="232.0" mnemonicParsing="false" onAction="#test" prefHeight="33.0" prefWidth="148.0" style="-fx-background-color: #17a2b8; -fx-font-weight: bold;" text="Association Associée" textFill="WHITE" />
+            <Label fx:id="username" layoutX="1050.0" layoutY="243.0" style="-fx-font-weight: bold;" textFill="#17a2b8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="you" layoutX="1095.0" layoutY="249.0" style="-fx-font-weight: bold;" text="(vous)" textFill="#17a2b8" visible="false" />
+            <ImageView fx:id="collectImage" fitHeight="315.0" fitWidth="330.0" layoutX="540.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+            <Text layoutX="883.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre de la Collecte:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="883.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget demandé:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="883.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="883.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fond Atteint:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Text layoutX="883.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Participants:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Label fx:id="nomCollecte" layoutX="1053.0" layoutY="76.0" text="Label" />
+            <Label fx:id="descriptionCollecte" layoutX="1053.0" layoutY="108.0" text="Label" />
+            <Label fx:id="budgetCollecte" layoutX="1053.0" layoutY="140.0" text="Label" />
+            <Label fx:id="fondAtteint" layoutX="1053.0" layoutY="170.0" text="Label" />
+            <Label fx:id="nbreParticipants" layoutX="1099.0" layoutY="201.0" text="Label" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="test" layoutX="964.0" layoutY="269.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>
