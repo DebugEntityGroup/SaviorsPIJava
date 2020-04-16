@@ -153,6 +153,7 @@ public class DetailsCollecteController implements Initializable {
                 CollecteController cc = loader.getController();
                 cc.getGererCollecte().setVisible(true);
                 cc.getUsernameLabel().setText(usernameLabel.getText());
+                cc.setMyRole(myRole);
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root);

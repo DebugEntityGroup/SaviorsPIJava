@@ -148,6 +148,8 @@ public class CollecteController implements Initializable {
                                             /*dc.getCollectImage().setFitHeight(300);
                                             dc.getCollectImage().setFitWidth(300);*/
                                             dc.getCollectImage().setImage(image);
+                                            System.out.println(myRole.getText());
+                                            dc.setMyRole(myRole);
                                             dc.getNomCollecte().setText(rs.getString("nomCollecte"));
                                             dc.getDescriptionCollecte().setText(rs.getString("descriptionCollecte"));
                                             int budget = rs.getInt("budgetCollecte");
