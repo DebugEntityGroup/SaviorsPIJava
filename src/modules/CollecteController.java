@@ -153,6 +153,11 @@ public class CollecteController implements Initializable {
                                             int budget = rs.getInt("budgetCollecte");
                                             int n = rs.getInt("nombreAtteint");
                                             int nbreParticipantsCollecte = rs.getInt("nombreParticipantsCollecte");
+                                            if(myRole.getText().equals("Association")) {
+                                                dc.getDonateDon().setVisible(false);
+                                            } else {
+                                                dc.getDonateDon().setVisible(true);
+                                            }
                                             dc.getBudgetCollecte().setText(String.valueOf(budget));
                                             dc.getFondAtteint().setText(String.valueOf(n));
                                             dc.getNbreParticipants().setText(String.valueOf(nbreParticipantsCollecte));

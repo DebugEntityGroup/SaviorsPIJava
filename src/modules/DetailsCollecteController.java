@@ -73,19 +73,19 @@ public class DetailsCollecteController implements Initializable {
 
     @FXML
     private Label test;
-    
+
     @FXML
     private Label nomCollecte;
-    
+
     @FXML
     private Label budgetCollecte;
-    
+
     @FXML
     private Label descriptionCollecte;
-    
+
     @FXML
     private Label fondAtteint;
-    
+
     @FXML
     private Label nbreParticipants;
 
@@ -94,6 +94,9 @@ public class DetailsCollecteController implements Initializable {
 
     @FXML
     private Button gererCollecte;
+    
+    @FXML
+    private Button donateDon;
 
     @FXML
     private ImageView collectImage;
@@ -133,6 +136,11 @@ public class DetailsCollecteController implements Initializable {
 
     public void setTest(Label test) {
         this.test = test;
+    }
+
+    @FXML
+    private void donateDon(ActionEvent event) throws Exception {
+        
     }
 
     @FXML
@@ -339,6 +347,14 @@ public class DetailsCollecteController implements Initializable {
 
     public void setNbreParticipants(Label nbreParticipants) {
         this.nbreParticipants = nbreParticipants;
+    }
+
+    public Button getDonateDon() {
+        return donateDon;
+    }
+
+    public void setDonateDon(Button donateDon) {
+        this.donateDon = donateDon;
     }
 
     public void test() {

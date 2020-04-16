@@ -108,6 +108,9 @@
             <Label fx:id="budgetCollecte" layoutX="1053.0" layoutY="140.0" text="Label" />
             <Label fx:id="fondAtteint" layoutX="1053.0" layoutY="170.0" text="Label" />
             <Label fx:id="nbreParticipants" layoutX="1099.0" layoutY="201.0" text="Label" />
+            <Button fx:id="donateDon" layoutX="1229.0" layoutY="36.0" mnemonicParsing="false" onAction="#donateDon" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #ffc107; -fx-font-weight: bold; -fx-border-color: white;" text="Faire un Don" />
+            <Label fx:id="fondAtteint1" layoutX="1080.0" layoutY="170.0" text="TND" />
+            <Label fx:id="budgetCollecte1" layoutX="1080.0" layoutY="140.0" text="TND" />
          </children>
       </AnchorPane>
       <Label fx:id="test" layoutX="964.0" layoutY="269.0" text="Label" visible="false" />
