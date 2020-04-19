@@ -29,9 +29,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -90,11 +92,20 @@ public class DetailsCollecteController implements Initializable {
     private Label nbreParticipants;
 
     @FXML
+    private Label userAssoc;
+
+    @FXML
+    private Label hiddenID;
+
+    @FXML
+    private Label champsRequis;
+
+    @FXML
     private Button saviorsLogo;
 
     @FXML
     private Button gererCollecte;
-    
+
     @FXML
     private Button donateDon;
 
@@ -105,12 +116,27 @@ public class DetailsCollecteController implements Initializable {
     private Button voirDetails;
 
     @FXML
+    private Button commentBtn;
+
+    @FXML
+    private Button hideComments;
+
+    @FXML
+    private Button listComments;
+
+    @FXML
+    private TextArea commentaireField;
+
+    @FXML
     private ComboBox<String> action;
 
     private ObservableList<ObservableList> data;
 
     @FXML
     private TableView imagesCollects;
+
+    @FXML
+    private ListView listeCommentaires;
 
     ObservableList<String> modules = FXCollections.observableArrayList("Evenement", "Publication", "Réclamation", "Collecte", "Produit", "Forum");
 
@@ -138,9 +164,112 @@ public class DetailsCollecteController implements Initializable {
         this.test = test;
     }
 
+    public Label getUserAssoc() {
+        return userAssoc;
+    }
+
+    public void setUserAssoc(Label userAssoc) {
+        this.userAssoc = userAssoc;
+    }
+
+    public Label getHiddenID() {
+        return hiddenID;
+    }
+
+    public void setHiddenID(Label hiddenID) {
+        this.hiddenID = hiddenID;
+    }
+
+    public TextArea getCommentaireField() {
+        return commentaireField;
+    }
+
+    public void setCommentaireField(TextArea commentaireField) {
+        this.commentaireField = commentaireField;
+    }
+
+    public Button getCommentBtn() {
+        return commentBtn;
+    }
+
+    public void setCommentBtn(Button commentBtn) {
+        this.commentBtn = commentBtn;
+    }
+
+    @FXML
+    private void commenterAction(ActionEvent event) throws Exception {
+        try {
+            Connection cnx = mysqlConnect.getInstance().getCnx();
+            Statement stm = cnx.createStatement();
+            String req = "select * from collectPending c, fos_user f where c.nomCollecte = '" + nomCollecte.getText() + "' and f.username='" + usernameLabel.getText() + "'";
+            ResultSet rs = stm.executeQuery(req);
+            if (rs.next()) {
+                String req2 = "insert into commentaire(user_id, contenu, collectPending_id) values ('" + rs.getInt("f.id") + "', '" + commentaireField.getText() + "', '" + rs.getInt("c.id") + "')";
+                if (commentaireField.getText().equals("")) {
+                    commentaireField.setStyle(
+                            "-fx-border-color: red;"
+                    );
+                    champsRequis.setVisible(true);
+                } else {
+                    stm.executeUpdate(req2);
+                    JOptionPane.showMessageDialog(null, "Commentaire ajoutée avec succés !");
+                    commentaireField.setText("");
+                    champsRequis.setVisible(false);
+                    commentaireField.setStyle(
+                            "-fx-border-color: none;"
+                    );
+                    System.out.println("L'utilisateur " + usernameLabel.getText() + " a ajouté un commentaire sur la Collecte: " + nomCollecte.getText());
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @FXML
+    private void hideComments(ActionEvent event) {
+        listeCommentaires.setVisible(false);
+        hideComments.setVisible(false);
+        listComments.setDisable(false);
+    }
+
+    @FXML
+    public void listView(ActionEvent event) throws Exception {
+        try {
+            Connection cnx = mysqlConnect.getInstance().getCnx();
+            Statement stm = cnx.createStatement();
+            String req = "select * from fos_user f, commentaire c, collectPending cp where cp.nomCollecte='" + nomCollecte.getText() + "' and c.collectPending_id=cp.id and f.id = c.user_id";
+            ResultSet rs = stm.executeQuery(req);
+            ObservableList<String> items = FXCollections.observableArrayList();
+            listeCommentaires.setItems(items);
+            listeCommentaires.setVisible(true);
+            hideComments.setVisible(true);
+            listComments.setDisable(true);
+            while (rs.next()) {
+                String r;
+                items.add("\"" + rs.getString("c.contenu") + "\"");
+                if (rs.getString("f.roles").equals("a:1:{i:0;s:11:\"ROLE_MEMBER\";}")) {
+                    r = "Membre";
+                } else if (rs.getString("f.roles").equals("a:1:{i:0;s:10:\"ROLE_FOURN\";}")) {
+                    r = "Fournisseur";
+                } else {
+                    r = "";
+                }
+                items.add("Commentaire publié par: " + rs.getString("f.username") + " (" + r + ")");
+                items.add("");
+            }
+            listeCommentaires.setStyle(
+                    "-fx-background-color: white;"
+                    + "-fx-font-weight: bold;"
+            );
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     @FXML
     private void donateDon(ActionEvent event) throws Exception {
-        
+
     }
 
     @FXML
@@ -153,7 +282,14 @@ public class DetailsCollecteController implements Initializable {
                 CollecteController cc = loader.getController();
                 cc.getGererCollecte().setVisible(true);
                 cc.getUsernameLabel().setText(usernameLabel.getText());
-                cc.setMyRole(myRole);
+
+                if (myRole.getText() == "Association") {
+                    cc.getGererCollecte().setVisible(true);
+                    cc.setMyRole(myRole);
+                } else {
+                    cc.getGererCollecte().setVisible(false);
+                    cc.setMyRole(myRole);
+                }
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root);
@@ -358,28 +494,9 @@ public class DetailsCollecteController implements Initializable {
         this.donateDon = donateDon;
     }
 
-    public void test() {
-        //System.out.println(Integer.parseInt(test.getText()));
-        Connection cnx = mysqlConnect.getInstance().getCnx();
-        try {
-            Statement stm = cnx.createStatement();
-
-            String req = "select * from fos_user where id='" + Integer.parseInt(test.getText()) + "'";
-            ResultSet rs = stm.executeQuery(req);
-            if (rs.next()) {
-                username.setText(rs.getString("username"));
-            }
-            if (username.getText().equals(usernameLabel.getText())) {
-                you.setVisible(true);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         action.setItems(modules);
-        test();
+        //listView();
     }
 }

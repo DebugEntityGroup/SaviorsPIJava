@@ -129,7 +129,7 @@ public class CollecteController implements Initializable {
                             try {
                                 Connection cnx = mysqlConnect.getInstance().getCnx();
                                 Statement stm = cnx.createStatement();
-                                String req = "select * from collectPending where image='" + c + "'";
+                                String req = "select * from collectPending c, fos_user f where c.image='" + c + "' and c.user_id = f.id";
                                 ResultSet rs = stm.executeQuery(req);
                                 if (rs.next()) {
                                     justCollecte.setVisible(true);
@@ -150,15 +150,23 @@ public class CollecteController implements Initializable {
                                             dc.getCollectImage().setImage(image);
                                             System.out.println(myRole.getText());
                                             dc.setMyRole(myRole);
-                                            dc.getNomCollecte().setText(rs.getString("nomCollecte"));
-                                            dc.getDescriptionCollecte().setText(rs.getString("descriptionCollecte"));
-                                            int budget = rs.getInt("budgetCollecte");
-                                            int n = rs.getInt("nombreAtteint");
-                                            int nbreParticipantsCollecte = rs.getInt("nombreParticipantsCollecte");
+                                            dc.getNomCollecte().setText(rs.getString("c.nomCollecte"));
+                                            dc.getDescriptionCollecte().setText(rs.getString("c.descriptionCollecte"));
+                                            dc.getUserAssoc().setText(rs.getString("f.username"));
+                                            String hiddenID = String.valueOf(rs.getInt("c.id"));
+                                            dc.getHiddenID().setText(hiddenID);
+                                            dc.getHiddenID().setVisible(false);
+                                            int budget = rs.getInt("c.budgetCollecte");
+                                            int n = rs.getInt("c.nombreAtteint");
+                                            int nbreParticipantsCollecte = rs.getInt("c.nombreParticipantsCollecte");
                                             if(myRole.getText().equals("Association")) {
                                                 dc.getDonateDon().setVisible(false);
+                                                dc.getCommentaireField().setVisible(false);
+                                                dc.getCommentBtn().setVisible(false);
                                             } else {
                                                 dc.getDonateDon().setVisible(true);
+                                                dc.getCommentaireField().setVisible(true);
+                                                dc.getCommentBtn().setVisible(true);
                                             }
                                             dc.getBudgetCollecte().setText(String.valueOf(budget));
                                             dc.getFondAtteint().setText(String.valueOf(n));

@@ -3,6 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,7 +72,6 @@
                   <Image url="@images/faireUnDon.png" />
                </image>
             </ImageView>
-            <Button layoutX="883.0" layoutY="232.0" mnemonicParsing="false" onAction="#test" prefHeight="33.0" prefWidth="148.0" style="-fx-background-color: #17a2b8; -fx-font-weight: bold;" text="Association Associée" textFill="WHITE" />
             <Label fx:id="username" layoutX="1050.0" layoutY="243.0" style="-fx-font-weight: bold;" textFill="#17a2b8">
                <font>
                   <Font size="18.0" />
@@ -78,41 +79,79 @@
             </Label>
             <Label fx:id="you" layoutX="1095.0" layoutY="249.0" style="-fx-font-weight: bold;" text="(vous)" textFill="#17a2b8" visible="false" />
             <ImageView fx:id="collectImage" fitHeight="315.0" fitWidth="330.0" layoutX="540.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
-            <Text layoutX="883.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre de la Collecte:">
+            <Text layoutX="883.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Titre de la Collecte:">
                <font>
                   <Font size="19.0" />
                </font>
             </Text>
-            <Text layoutX="883.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budget demandé:">
+            <Text layoutX="883.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Budget demandé:">
                <font>
                   <Font size="19.0" />
                </font>
             </Text>
-            <Text layoutX="883.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:">
+            <Text layoutX="883.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Description:">
                <font>
                   <Font size="19.0" />
                </font>
             </Text>
-            <Text layoutX="883.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fond Atteint:">
+            <Text layoutX="883.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Fond Atteint:">
                <font>
                   <Font size="19.0" />
                </font>
             </Text>
-            <Text layoutX="883.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Participants:">
+            <Text layoutX="883.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de Participants:">
                <font>
                   <Font size="19.0" />
                </font>
             </Text>
-            <Label fx:id="nomCollecte" layoutX="1053.0" layoutY="76.0" text="Label" />
-            <Label fx:id="descriptionCollecte" layoutX="1053.0" layoutY="108.0" text="Label" />
-            <Label fx:id="budgetCollecte" layoutX="1053.0" layoutY="140.0" text="Label" />
-            <Label fx:id="fondAtteint" layoutX="1053.0" layoutY="170.0" text="Label" />
-            <Label fx:id="nbreParticipants" layoutX="1099.0" layoutY="201.0" text="Label" />
+            <Label fx:id="nomCollecte" layoutX="1070.0" layoutY="112.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="descriptionCollecte" layoutX="1070.0" layoutY="144.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="budgetCollecte" layoutX="1070.0" layoutY="176.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="fondAtteint" layoutX="1070.0" layoutY="206.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="nbreParticipants" layoutX="1116.0" layoutY="237.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
             <Button fx:id="donateDon" layoutX="1229.0" layoutY="36.0" mnemonicParsing="false" onAction="#donateDon" prefHeight="42.0" prefWidth="109.0" style="-fx-background-color: #ffc107; -fx-font-weight: bold; -fx-border-color: white;" text="Faire un Don" />
-            <Label fx:id="fondAtteint1" layoutX="1080.0" layoutY="170.0" text="TND" />
-            <Label fx:id="budgetCollecte1" layoutX="1080.0" layoutY="140.0" text="TND" />
+            <Label fx:id="fondAtteint1" layoutX="1109.0" layoutY="206.0" text="TND">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <Label fx:id="budgetCollecte1" layoutX="1109.0" layoutY="176.0" text="TND">
+               <font>
+                  <Font size="17.0" />
+               </font></Label>
+            <ListView fx:id="listeCommentaires" layoutX="132.0" layoutY="237.0" prefHeight="150.0" prefWidth="383.0" visible="false" />
+            <Text layoutX="883.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Publié par:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Label fx:id="userAssoc" layoutX="1043.0" layoutY="62.0" style="-fx-font-weight: bold;" text="Label" textFill="#d05067">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="commentaireField" layoutX="883.0" layoutY="270.0" prefHeight="94.0" prefWidth="276.0" promptText="Publier un Commentaire" />
+            <Button fx:id="commentBtn" layoutX="883.0" layoutY="364.0" mnemonicParsing="false" onAction="#commenterAction" style="-fx-background-color: #17a2b8; -fx-border-color: white; -fx-font-weight: bold;" text="Commenter" textFill="WHITE" />
+            <Label fx:id="champsRequis" layoutX="1079.0" layoutY="369.0" text="Champs requis" textFill="RED" visible="false" />
+            <Button fx:id="listComments" layoutX="132.0" layoutY="194.0" mnemonicParsing="false" onAction="#listView" style="-fx-background-color: #28a745; -fx-border-color: white; -fx-font-weight: bold;" text="Liste des Commentaires" textFill="WHITE" />
+            <Button fx:id="hideComments" layoutX="301.0" layoutY="194.0" mnemonicParsing="false" onAction="#hideComments" style="-fx-background-color: #dc3545; -fx-border-color: white; -fx-font-weight: bold;" text="Cacher les Commentaires" textFill="WHITE" visible="false" />
          </children>
       </AnchorPane>
       <Label fx:id="test" layoutX="964.0" layoutY="269.0" text="Label" visible="false" />
+      <Label fx:id="hiddenID" layoutX="1141.0" layoutY="213.0" text="Label" />
    </children>
 </AnchorPane>
