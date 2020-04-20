@@ -87,6 +87,7 @@ public class ManageCollecteController implements Initializable {
                 CollecteController cc = loader.getController();
                 cc.getGererCollecte().setVisible(true);
                 cc.getUsernameLabel().setText(usernameLabel.getText());
+                cc.setMyRole(myRole);
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root);
@@ -158,6 +159,7 @@ public class ManageCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             CreateCollecteController cc = loader.getController();
             cc.getUsernameLabel().setText(usernameLabel.getText());
+            cc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -180,6 +182,7 @@ public class ManageCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             CreateCategorieCollecteController ct = loader.getController();
             ct.getUsernameLabel().setText(usernameLabel.getText());
+            ct.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -306,6 +309,14 @@ public class ManageCollecteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         action.setItems(modules);
         allCollectes();
+    }
+
+    public Label getMyRole() {
+        return myRole;
+    }
+
+    public void setMyRole(Label myRole) {
+        this.myRole = myRole;
     }
 
 }

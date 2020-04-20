@@ -108,6 +108,7 @@ public class ListeCategoriesCollecteController implements Initializable {
                 CollecteController cc = loader.getController();
                 cc.getGererCollecte().setVisible(true);
                 cc.getUsernameLabel().setText(usernameLabel.getText());
+                cc.setMyRole(myRole);
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root);
@@ -134,6 +135,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             CreateCategorieCollecteController ct = loader.getController();
             ct.getUsernameLabel().setText(usernameLabel.getText());
+            ct.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -156,6 +158,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             CreateCollecteController cc = loader.getController();
             cc.getUsernameLabel().setText(usernameLabel.getText());
+            cc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -276,12 +279,13 @@ public class ListeCategoriesCollecteController implements Initializable {
         try {
             Connection cnx = mysqlConnect.getInstance().getCnx();
             Statement stm = cnx.createStatement();
-            String req = "select * from categorie_collect;";
+            String req = "select typeCategorie from categorie_collect;";
             //String req2 = "select count(*) as nbreColCat from categorie_collect";
             ResultSet rs = stm.executeQuery(req);
             
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
+                //TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
                 col.setCellValueFactory(new Callback<CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
                     public ObservableValue<String> call(CellDataFeatures<ObservableList, String> param) {
                         return new SimpleStringProperty(param.getValue().get(j).toString());
@@ -291,7 +295,7 @@ public class ListeCategoriesCollecteController implements Initializable {
                 col.setStyle(
                         "-fx-background-color: white;"
                 );
-                addButtonToTable();
+                //addButtonToTable();
                 System.out.println("Column [" + i + "] ");
             }
             
@@ -464,6 +468,14 @@ public class ListeCategoriesCollecteController implements Initializable {
     
     public void setCol(TableColumn col) {
         this.col = col;
+    }
+
+    public Label getMyRole() {
+        return myRole;
+    }
+
+    public void setMyRole(Label myRole) {
+        this.myRole = myRole;
     }
     
     @Override

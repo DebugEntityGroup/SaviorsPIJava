@@ -1,0 +1,22 @@
+.Connexion {
+    -fx-font-family: Poppins, sans-serif;
+    -fx-font-weight: bold;
+}
+.mask {
+    -fx-background-color: none;
+}
+.continue {
+    -fx-font-family: Poppins, sans-serif;
+    -fx-font-weight: bold;
+}
+.gererCollecte:hover {
+    -fx-font-color: #4F3516;
+}
+.gererCollecte {
+    -fx-font-family: 'Fleftex';
+}
+.tableCategories:empty {
+    -fx-background-color: white;
+    -fx-alignement: center;
+}
+

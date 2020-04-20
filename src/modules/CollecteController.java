@@ -338,6 +338,7 @@ public class CollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             ManageCollecteController mc = loader.getController();
             mc.getUsernameLabel().setText(usernameLabel.getText());
+            mc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);

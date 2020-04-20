@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="187.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AlertController">
+   <children>
+      <Pane prefHeight="65.0" prefWidth="375.0" style="-fx-background-color: black;">
+         <children>
+            <Label layoutX="133.0" layoutY="11.0" prefHeight="17.0" prefWidth="183.0" text="Oops !" textFill="WHITE">
+               <font>
+                  <Font name="Forte" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Text layoutX="32.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Merci de Selectionner un produit." wrappingWidth="311.13671875">
+         <font>
+            <Font name="Forte" size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="ok" layoutX="263.0" layoutY="146.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: black;" text="OK" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

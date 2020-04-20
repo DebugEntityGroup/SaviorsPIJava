@@ -262,6 +262,10 @@ public class DetailsCollecteController implements Initializable {
                     "-fx-background-color: white;"
                     + "-fx-font-weight: bold;"
             );
+            if (items.size() == 0) {
+                items.add("Il n'y a pas encore de commentaires pour cette collecte.");
+                hideComments.setVisible(false);
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -269,7 +273,44 @@ public class DetailsCollecteController implements Initializable {
 
     @FXML
     private void donateDon(ActionEvent event) throws Exception {
-
+        try {
+            exitAction();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modules/Donate.fxml"));
+            Parent root = (Parent) loader.load();
+            DonateController dc = loader.getController();
+            dc.setMyRole(myRole);
+            dc.getNomCollecte().setText(nomCollecte.getText());
+            dc.getUserAssoc().setText(userAssoc.getText());
+            dc.getDescriptionCollecte().setText(descriptionCollecte.getText());
+            dc.getBudgetCollecte().setText(budgetCollecte.getText());
+            dc.getFondAtteint().setText(fondAtteint.getText());
+            dc.getNbreParticipants().setText(nbreParticipants.getText());
+            //dc.setCollectImage(collectImage);
+            dc.getCollectImage().setImage(collectImage.getImage());
+            dc.getUsernameLabel().setText(usernameLabel.getText());
+            dc.getHiddenID().setVisible(false);
+            if(Integer.parseInt(dc.getBudgetCollecte().getText())-Integer.parseInt(dc.getFondAtteint().getText())<50) {
+                dc.getCloseCollect().setVisible(true);
+                dc.getMoneyDonated().setDisable(true);
+                dc.getDonateButton().setDisable(true);
+                dc.getCancelButton().setDisable(true);
+            } else {
+                dc.getCloseCollect().setVisible(false);
+                dc.getMoneyDonated().setDisable(false);
+                dc.getDonateButton().setDisable(false);
+                dc.getCancelButton().setDisable(false);
+            }
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(root);
+            Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
+            stage.getIcons().add(icon);
+            stage.setScene(scene);
+            stage.setTitle("Faire un Don - Saviors");
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -361,6 +402,7 @@ public class DetailsCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             ManageCollecteController mc = loader.getController();
             mc.getUsernameLabel().setText(usernameLabel.getText());
+            mc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -497,6 +539,5 @@ public class DetailsCollecteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         action.setItems(modules);
-        //listView();
     }
 }

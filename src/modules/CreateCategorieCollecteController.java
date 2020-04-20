@@ -74,6 +74,7 @@ public class CreateCategorieCollecteController implements Initializable {
                 CollecteController cc = loader.getController();
                 cc.getGererCollecte().setVisible(true);
                 cc.getUsernameLabel().setText(usernameLabel.getText());
+                cc.setMyRole(myRole);
                 Stage stage = new Stage();
                 stage.initStyle(StageStyle.UNDECORATED);
                 Scene scene = new Scene(root);
@@ -145,6 +146,7 @@ public class CreateCategorieCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             ManageCollecteController mc = loader.getController();
             mc.getUsernameLabel().setText(usernameLabel.getText());
+            mc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -193,6 +195,7 @@ public class CreateCategorieCollecteController implements Initializable {
             Parent root = (Parent) loader.load();
             ListeCategoriesCollecteController lc = loader.getController();
             lc.getUsernameLabel().setText(usernameLabel.getText());
+            lc.setMyRole(myRole);
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Scene scene = new Scene(root);
@@ -267,6 +270,14 @@ public class CreateCategorieCollecteController implements Initializable {
 
     public void setGererCollecte(Button gererCollecte) {
         this.gererCollecte = gererCollecte;
+    }
+
+    public Label getMyRole() {
+        return myRole;
+    }
+
+    public void setMyRole(Label myRole) {
+        this.myRole = myRole;
     }
 
     @Override
