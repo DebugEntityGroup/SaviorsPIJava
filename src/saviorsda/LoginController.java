@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -76,10 +77,10 @@ public class LoginController implements Initializable {
 
     @FXML
     private javafx.scene.control.Button exit;
-    
+
     @FXML
     private AnchorPane connectMe;
-    
+
     @FXML
     private Label connectToContinue;
 
@@ -133,20 +134,20 @@ public class LoginController implements Initializable {
                     //JOptionPane.showMessageDialog(null, "Vous êtes connecté avec succès !");
                     int id = rs.getInt("id");
                     String nomUser = rs.getString("username");
-                    System.out.println("L'utilisateur "+nomUser+ " d'ID "+id+ " est authentifié !");
+                    System.out.println("L'utilisateur " + nomUser + " d'ID " + id + " est authentifié !");
                     exitAction();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/homepage/userAuthentified.fxml"));
                     Parent root = (Parent) loader.load();
                     UserAuthentifiedController ua = loader.getController();
-                    if("a:1:{i:0;s:10:\"ROLE_ASSOC\";}".equals(rs.getString("roles"))) {
+                    if ("a:1:{i:0;s:10:\"ROLE_ASSOC\";}".equals(rs.getString("roles"))) {
                         ua.getMyRole().setText("Association");
                         ua.getMyRole().setVisible(false);
                     }
-                    if("a:1:{i:0;s:10:\"ROLE_FOURN\";}".equals(rs.getString("roles"))) {
+                    if ("a:1:{i:0;s:10:\"ROLE_FOURN\";}".equals(rs.getString("roles"))) {
                         ua.getMyRole().setText("Fournisseur");
                         ua.getMyRole().setVisible(false);
                     }
-                    if("a:1:{i:0;s:11:\"ROLE_MEMBER\";}".equals(rs.getString("roles"))) {
+                    if ("a:1:{i:0;s:11:\"ROLE_MEMBER\";}".equals(rs.getString("roles"))) {
                         ua.getMyRole().setText("Membre");
                         ua.getMyRole().setVisible(false);
                     }
@@ -160,6 +161,8 @@ public class LoginController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
                     stage.getIcons().add(icon);
                     stage.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage.setTitle("Bonjour " + username.getText() + " - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
                       hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/
@@ -208,22 +211,24 @@ public class LoginController implements Initializable {
     @FXML
     public void signupAction(ActionEvent event) throws Exception {
         try {
-        exitAction();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/saviorsda/SignUp.fxml"));
-        Parent root = (Parent) loader.load();
-        SignUpController sc = loader.getController();
-        sc.getRoles().getItems().addAll("Association", "Membre", "Fournisseur");
-        sc.getRoles().getSelectionModel().selectFirst();
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new Scene(root);
-        Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
-        stage.getIcons().add(icon);
-        stage.setScene(scene);
-        stage.setTitle("Inscription - Saviors");
-        /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
+            exitAction();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/saviorsda/SignUp.fxml"));
+            Parent root = (Parent) loader.load();
+            SignUpController sc = loader.getController();
+            sc.getRoles().getItems().addAll("Association", "Membre", "Fournisseur");
+            sc.getRoles().getSelectionModel().selectFirst();
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(root);
+            Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
+            stage.getIcons().add(icon);
+            stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
+            stage.setTitle("Inscription - Saviors");
+            /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
                       hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/
-        stage.show();
+            stage.show();
         } catch (IOException e) {
             System.out.println("Erreur de chargement de page !");
         }
@@ -261,6 +266,8 @@ public class LoginController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {

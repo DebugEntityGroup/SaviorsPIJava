@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -124,6 +125,12 @@ public class DonateController implements Initializable {
     private Button donateButton;
 
     @FXML
+    private Button hideDons;
+
+    @FXML
+    private Button donsButton;
+
+    @FXML
     private TextField moneyDonated;
 
     @FXML
@@ -131,6 +138,9 @@ public class DonateController implements Initializable {
 
     @FXML
     private ComboBox<String> action;
+
+    @FXML
+    private ListView listeDons;
 
     private ObservableList<ObservableList> data;
 
@@ -222,6 +232,8 @@ public class DonateController implements Initializable {
                 Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
@@ -272,6 +284,8 @@ public class DonateController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -294,10 +308,56 @@ public class DonateController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Collectes - Saviors");
             stage.show();
         } catch (IOException e) {
             System.out.println("Erreur de chargement de page !");
+        }
+    }
+
+    @FXML
+    private void hideDonsAction(ActionEvent event) {
+        listeDons.setVisible(false);
+        hideDons.setVisible(false);
+        donsButton.setDisable(false);
+    }
+
+    @FXML
+    private void allDonatesAction(ActionEvent event) throws Exception {
+        try {
+            Connection cnx = mysqlConnect.getInstance().getCnx();
+            Statement stm = cnx.createStatement();
+            String req = "select * from don d, fos_user f, collectPending c where c.nomCollecte='" + nomCollecte.getText() + "' and d.collectPending_id=c.id and f.id=d.user_id";
+            ResultSet rs = stm.executeQuery(req);
+            ObservableList<String> items = FXCollections.observableArrayList();
+            listeDons.setItems(items);
+            listeDons.setVisible(true);
+            hideDons.setVisible(true);
+            donsButton.setDisable(true);
+            while (rs.next()) {
+                String r;
+                if (rs.getString("f.roles").equals("a:1:{i:0;s:11:\"ROLE_MEMBER\";}")) {
+                    r = "Membre";
+                } else if (rs.getString("f.roles").equals("a:1:{i:0;s:10:\"ROLE_FOURN\";}")) {
+                    r = "Fournisseur";
+                } else {
+                    r = "";
+                }
+                items.add(rs.getString("f.username") + "(" + r + "): " + rs.getInt("moneyDonated") + "TND " + rs.getDate("dateHour"));
+                items.add("");
+            }
+            listeDons.setStyle(
+                    "-fx-background-color: none;"
+                    + "-fx-font-weight: bold;"
+            );
+            if (items.size() == 0) {
+                items.add("Aucun don attribué pour cette Collecte.");
+                hideDons.setVisible(false);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -325,7 +385,7 @@ public class DonateController implements Initializable {
                     champsRequis.setVisible(true);
                     //JOptionPane.showMessageDialog(null, "Champs requis !");
                 }
-                if (Integer.parseInt(moneyDonated.getText()) < 50 && rs.getInt("c.budgetCollecte")-rs.getInt("c.nombreAtteint")>=50) {
+                if (Integer.parseInt(moneyDonated.getText()) < 50 && rs.getInt("c.budgetCollecte") - rs.getInt("c.nombreAtteint") >= 50) {
                     JOptionPane.showMessageDialog(null, "Veuillez entrer un montant supérieur ou égal à 50 TND !");
                     champsRequis.setVisible(false);
                     moneyDonated.setStyle(
@@ -339,7 +399,8 @@ public class DonateController implements Initializable {
                     donateButton.setDisable(true);
                     cancelButton.setDisable(true);
                 }*/
-                } if (rs.getInt("c.budgetCollecte")-rs.getInt("c.nombreAtteint")<50) {
+                }
+                if (rs.getInt("c.budgetCollecte") - rs.getInt("c.nombreAtteint") < 50) {
                     //stm.executeUpdate(req2);
                     JOptionPane.showMessageDialog(null, "Vous ne pouvez plus contribuer à cette Collecte !\n Elle est cloturée maintenant !");
                     closeCollect.setVisible(true);
@@ -361,14 +422,14 @@ public class DonateController implements Initializable {
                     donateButton.setDisable(true);
                 }*/ else {
                     if (Integer.parseInt(moneyDonated.getText()) >= 50) {
-                    int total = rs.getInt("nombreAtteint") + Integer.parseInt(moneyDonated.getText());
-                    int nbreParticipants = rs.getInt("nombreParticipantsCollecte")+1;
-                    String req3 = "update collectPending c set nombreAtteint='" + total + "', nombreParticipantsCollecte='"+nbreParticipants+"' where c.nomCollecte='" + nomCollecte.getText() + "'";
-                    String req2 = "insert into don(user_id, moneyDonated, dateHour, collectPending_id) values ('" + rs.getInt("f.id") + "', '" + Integer.parseInt(moneyDonated.getText()) + "', '" + currentTime + "', '" + rs.getInt("c.id") + "')";
-                    stm.executeUpdate(req2);
-                    JOptionPane.showMessageDialog(null, "Vous avez participé à la contribution de cette Collecte !");
-                    stm.executeUpdate(req3);
-                    moneyDonated.setText("");
+                        int total = rs.getInt("nombreAtteint") + Integer.parseInt(moneyDonated.getText());
+                        int nbreParticipants = rs.getInt("nombreParticipantsCollecte") + 1;
+                        String req3 = "update collectPending c set nombreAtteint='" + total + "', nombreParticipantsCollecte='" + nbreParticipants + "' where c.nomCollecte='" + nomCollecte.getText() + "'";
+                        String req2 = "insert into don(user_id, moneyDonated, dateHour, collectPending_id) values ('" + rs.getInt("f.id") + "', '" + Integer.parseInt(moneyDonated.getText()) + "', '" + currentTime + "', '" + rs.getInt("c.id") + "')";
+                        stm.executeUpdate(req2);
+                        JOptionPane.showMessageDialog(null, "Vous avez participé à la contribution de cette Collecte !");
+                        stm.executeUpdate(req3);
+                        moneyDonated.setText("");
                     }
                 }
             }
@@ -449,6 +510,8 @@ public class DonateController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/

@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -84,6 +85,8 @@ public class UserAuthentifiedController implements Initializable {
                 Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
@@ -96,6 +99,8 @@ public class UserAuthentifiedController implements Initializable {
                 lp.getUsernameLabel().setText(usernameLabel.getText());
                 Scene scene = new Scene(root);
                 produits.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 produits.initStyle(StageStyle.UNDECORATED);
                 produits.show();
                 produits.setResizable(false);
@@ -159,6 +164,8 @@ public class UserAuthentifiedController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/

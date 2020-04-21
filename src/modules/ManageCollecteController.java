@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -95,6 +96,8 @@ public class ManageCollecteController implements Initializable {
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
                 stage.setTitle("Collecte - Saviors");
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
             } else {
@@ -130,7 +133,7 @@ public class ManageCollecteController implements Initializable {
                 System.out.println("Column [" + i + "] ");
             }
             System.out.println("Liste des Collectes");
-            
+
             while (rs.next()) {
                 ObservableList<String> row = FXCollections.observableArrayList();
                 for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
@@ -166,6 +169,8 @@ public class ManageCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Créer une nouvelle Collecte - Saviors");
             stage.show();
         } catch (Exception e) {
@@ -189,6 +194,8 @@ public class ManageCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Créer une nouvelle Catégorie - Saviors");
             stage.show();
         } catch (Exception e) {
@@ -235,6 +242,8 @@ public class ManageCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -271,6 +280,8 @@ public class ManageCollecteController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/

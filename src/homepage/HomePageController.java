@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -61,6 +62,8 @@ public class HomePageController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Se Connecter - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -89,7 +92,7 @@ public class HomePageController implements Initializable {
         this.seConnecter = seConnecter;
     }*/
 
-    /*public AnchorPane getNavBar() {
+ /*public AnchorPane getNavBar() {
         return navBar;
     }
 

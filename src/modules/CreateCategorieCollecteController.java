@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -81,6 +82,8 @@ public class CreateCategorieCollecteController implements Initializable {
                 Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
@@ -131,6 +134,8 @@ public class CreateCategorieCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -153,6 +158,8 @@ public class CreateCategorieCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Collectes - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -163,30 +170,30 @@ public class CreateCategorieCollecteController implements Initializable {
     @FXML
     private void ajoutCategorie(ActionEvent event) throws Exception {
         try {
-        Connection cnx = mysqlConnect.getInstance().getCnx();
-        Statement stm = cnx.createStatement();
-        String req = "insert into categorie_collect(typeCategorie) values ('" + typeCategorie.getText() + "')";
-        if(typeCategorie.getText()!="") {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmer l'ajout ?");
-        alert.setHeaderText(null);
-        alert.setContentText("Voulez-vous ajouter cette Catégorie ?");
-        Optional<ButtonType> action = alert.showAndWait();
-        if (action.get() == ButtonType.OK) {
-            stm.executeUpdate(req);
-            JOptionPane.showMessageDialog(null, "Catégorie ajoutée avec succés !");
-            typeCategorie.setText("");
-            System.out.println("La Catégorie "+typeCategorie.getText()+ "a été ajoutée avec succés !");
-        }
-        } else {
-            JOptionPane.showMessageDialog(null, "Champs requis !");
-        }
+            Connection cnx = mysqlConnect.getInstance().getCnx();
+            Statement stm = cnx.createStatement();
+            String req = "insert into categorie_collect(typeCategorie) values ('" + typeCategorie.getText() + "')";
+            if (typeCategorie.getText() != "") {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmer l'ajout ?");
+                alert.setHeaderText(null);
+                alert.setContentText("Voulez-vous ajouter cette Catégorie ?");
+                Optional<ButtonType> action = alert.showAndWait();
+                if (action.get() == ButtonType.OK) {
+                    stm.executeUpdate(req);
+                    JOptionPane.showMessageDialog(null, "Catégorie ajoutée avec succés !");
+                    typeCategorie.setText("");
+                    System.out.println("La Catégorie " + typeCategorie.getText() + "a été ajoutée avec succés !");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Champs requis !");
+            }
         } catch (Exception e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Cette Catégorie existe déjà !");
         }
     }
-    
+
     @FXML
     private void allCategoriesAction(ActionEvent event) throws Exception {
         try {
@@ -202,6 +209,8 @@ public class CreateCategorieCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Catégories - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -238,6 +247,8 @@ public class CreateCategorieCollecteController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/

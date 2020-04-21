@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart.Data;
@@ -43,61 +44,61 @@ import javax.swing.JOptionPane;
 import mysql.mysqlConnect;
 
 public class ListeCategoriesCollecteController implements Initializable {
-    
+
     @FXML
     private Label usernameLabel;
-    
+
     @FXML
     private TextField searchField;
-    
+
     @FXML
     private javafx.scene.control.Button exit;
-    
+
     @FXML
     private Label logoutText;
-    
+
     @FXML
     private Label myRole;
-    
+
     @FXML
     private Label listCategories;
-    
+
     @FXML
     private Label noCategories;
-    
+
     @FXML
     private Button saviorsLogo;
-    
+
     @FXML
     private Button gererCollecte;
-    
+
     @FXML
     private Button editButton;
-    
+
     @FXML
     private TableColumn typeCat;
-    
+
     @FXML
     private TableColumn actionsCrud;
-    
+
     @FXML
     private TableView allCategoriesListed;
-    
+
     private ObservableList<ObservableList> data;
-    
+
     @FXML
     private ComboBox<String> action;
-    
+
     ObservableList<String> modules = FXCollections.observableArrayList("Evenement", "Publication", "Réclamation", "Collecte", "Produit", "Forum");
-    
+
     public Label getUsernameLabel() {
         return usernameLabel;
     }
-    
+
     public void setUsernameLabel(Label usernameLabel) {
         this.usernameLabel = usernameLabel;
     }
-    
+
     @FXML
     private void moduleAction(ActionEvent event) throws Exception {
         try {
@@ -115,6 +116,8 @@ public class ListeCategoriesCollecteController implements Initializable {
                 Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
@@ -126,7 +129,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             System.out.println(e);
         }
     }
-    
+
     @FXML
     private void createCategorieAction(ActionEvent event) throws Exception {
         try {
@@ -142,6 +145,8 @@ public class ListeCategoriesCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Créer une nouvelle Catégorie - Saviors");
             stage.show();
         } catch (Exception e) {
@@ -149,7 +154,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             System.out.println(e);
         }
     }
-    
+
     @FXML
     private void createCollecteAction(ActionEvent event) throws Exception {
         try {
@@ -165,6 +170,8 @@ public class ListeCategoriesCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Créer une nouvelle Collecte - Saviors");
             stage.show();
         } catch (Exception e) {
@@ -172,13 +179,13 @@ public class ListeCategoriesCollecteController implements Initializable {
             System.out.println(e);
         }
     }
-    
+
     @FXML
     private void exitAction() {
         Stage stage = (Stage) exit.getScene().getWindow();
         stage.close();
     }
-    
+
     @FXML
     public void saviorsHomepage(ActionEvent event) throws Exception {
         try {
@@ -211,13 +218,15 @@ public class ListeCategoriesCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
             System.out.println("Erreur de chargement de page !");
         }
     }
-    
+
     @FXML
     private void disconnectAction() throws Exception {
         Connection cnx = mysqlConnect.getInstance().getCnx();
@@ -247,6 +256,8 @@ public class ListeCategoriesCollecteController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/
@@ -257,7 +268,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             }
         }
     }
-    
+
     @FXML
     private void exitButtonAction() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -273,7 +284,7 @@ public class ListeCategoriesCollecteController implements Initializable {
         }
     }
     TableColumn col = new TableColumn("Type de la Categorie");
-    
+
     public void Allcategories() {
         data = FXCollections.observableArrayList();
         try {
@@ -282,7 +293,7 @@ public class ListeCategoriesCollecteController implements Initializable {
             String req = "select typeCategorie from categorie_collect;";
             //String req2 = "select count(*) as nbreColCat from categorie_collect";
             ResultSet rs = stm.executeQuery(req);
-            
+
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
                 //TableColumn col = new TableColumn(rs.getMetaData().getColumnName(i + 1));
@@ -298,9 +309,9 @@ public class ListeCategoriesCollecteController implements Initializable {
                 //addButtonToTable();
                 System.out.println("Column [" + i + "] ");
             }
-            
+
             System.out.println("Liste des Catégories");
-            
+
             while (rs.next()) {
                 //Iterate Row
                 ObservableList<String> row = FXCollections.observableArrayList();
@@ -310,7 +321,7 @@ public class ListeCategoriesCollecteController implements Initializable {
                 System.out.println(row);
                 data.add(row);
             }
-            
+
             allCategoriesListed.setItems(data);
             if (allCategoriesListed.getItems().size() == 0) {
                 allCategoriesListed.setVisible(false);
@@ -323,22 +334,22 @@ public class ListeCategoriesCollecteController implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     public Button getGererCollecte() {
         return gererCollecte;
     }
-    
+
     public void setGererCollecte(Button gererCollecte) {
         this.gererCollecte = gererCollecte;
     }
-    
+
     private void addButtonToTable() {
         TableColumn<Data, Void> colBtn = new TableColumn("Actions");
-        
+
         colBtn.setStyle(
                 "-fx-background-color: white;"
         );
-        
+
         Callback<TableColumn<Data, Void>, TableCell<Data, Void>> cellFactory = new Callback<TableColumn<Data, Void>, TableCell<Data, Void>>() {
             @Override
             public TableCell<Data, Void> call(final TableColumn<Data, Void> param) {
@@ -346,7 +357,7 @@ public class ListeCategoriesCollecteController implements Initializable {
 
                     //private final Button edit = new Button("Modifier");
                     private final Button delete = new Button("Supprimer");
-                    
+
                     {
 
                         /*edit.setOnAction((ActionEvent event) -> {
@@ -423,9 +434,9 @@ public class ListeCategoriesCollecteController implements Initializable {
                                 + "-fx-font-weight: bold;"
                         );
                     }
-                    
+
                     HBox pane = new HBox(delete);
-                    
+
                     @Override
                     public void updateItem(Void item, boolean empty) {
                         super.updateItem(item, empty);
@@ -447,25 +458,25 @@ public class ListeCategoriesCollecteController implements Initializable {
                 return cell;
             }
         };
-        
+
         colBtn.setCellFactory(cellFactory);
-        
+
         allCategoriesListed.getColumns().add(colBtn);
-        
+
     }
-    
+
     public TableView getAllCategoriesListed() {
         return allCategoriesListed;
     }
-    
+
     public void setAllCategoriesListed(TableView allCategoriesListed) {
         this.allCategoriesListed = allCategoriesListed;
     }
-    
+
     public TableColumn getCol() {
         return col;
     }
-    
+
     public void setCol(TableColumn col) {
         this.col = col;
     }
@@ -477,11 +488,11 @@ public class ListeCategoriesCollecteController implements Initializable {
     public void setMyRole(Label myRole) {
         this.myRole = myRole;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         action.setItems(modules);
         Allcategories();
     }
-    
+
 }

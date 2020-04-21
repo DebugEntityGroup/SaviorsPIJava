@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -159,7 +160,7 @@ public class CollecteController implements Initializable {
                                             int budget = rs.getInt("c.budgetCollecte");
                                             int n = rs.getInt("c.nombreAtteint");
                                             int nbreParticipantsCollecte = rs.getInt("c.nombreParticipantsCollecte");
-                                            if(myRole.getText().equals("Association")) {
+                                            if (myRole.getText().equals("Association")) {
                                                 dc.getDonateDon().setVisible(false);
                                                 dc.getCommentaireField().setVisible(false);
                                                 dc.getCommentBtn().setVisible(false);
@@ -177,6 +178,8 @@ public class CollecteController implements Initializable {
                                             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                                             stage.getIcons().add(icon);
                                             stage.setScene(scene);
+                                            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                                            scene.setCursor(new ImageCursor(mouseCursor));
                                             stage.setTitle("Détails de la Collecte - Saviors");
                                             stage.show();
                                         } catch (Exception e) {
@@ -323,6 +326,8 @@ public class CollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -345,6 +350,8 @@ public class CollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Collectes - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -381,6 +388,8 @@ public class CollecteController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/

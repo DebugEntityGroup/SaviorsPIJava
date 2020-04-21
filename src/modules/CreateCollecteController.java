@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -113,6 +114,8 @@ public class CreateCollecteController implements Initializable {
                 Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
                 stage.getIcons().add(icon);
                 stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
@@ -163,6 +166,8 @@ public class CreateCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/homepage/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Accueil - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -185,6 +190,8 @@ public class CreateCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Collectes - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -242,7 +249,7 @@ public class CreateCollecteController implements Initializable {
                 int nbreParticipants = 0;
                 String req2 = "insert into collectPending(user_id, nomCollecte, budgetCollecte, nombreAtteint, descriptionCollecte, nombreParticipantsCollecte, image, categorieCollect_typeCategorie) values ('" + rs.getInt("id") + "', '" + nomCollecte.getText() + "', '" + budgetCollecte.getText() + "', '" + nbreAtteint + "', '" + descriptionCollecte.getText() + "', '" + nbreParticipants + "', '" + imageName.getText() + "', '" + catFieldCollecte.getValue() + "')";
                 if (validateBudget()) {
-                    System.out.println("src/modules/images/"+imageName.getText());
+                    System.out.println("src/modules/images/" + imageName.getText());
                     stm.executeUpdate(req2);
                     File dir = new File("C:\\wamp64\\www\\symfony\\web\\uploads");
                     File dir2 = new File("src/modules/images");
@@ -257,7 +264,7 @@ public class CreateCollecteController implements Initializable {
                     JOptionPane.showMessageDialog(null, "Collecte ajoutée avec succés !");
                 }
             }
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -289,6 +296,8 @@ public class CreateCollecteController implements Initializable {
             Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
             stage.getIcons().add(icon);
             stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
             stage.setTitle("Gérer mes Catégories - Saviors");
             stage.show();
         } catch (IOException e) {
@@ -325,6 +334,8 @@ public class CreateCollecteController implements Initializable {
                     Image icon = new Image(getClass().getResourceAsStream("/saviorsda/images/saviorsIcon.png"));
                     stage2.getIcons().add(icon);
                     stage2.setScene(scene);
+                    Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                    scene.setCursor(new ImageCursor(mouseCursor));
                     stage2.setTitle("Se Connecter - Saviors");
                     /*hc.getNavBar().getChildren().remove(hc.getSeConnecterBtn());
               hc.getNavBar().getChildren().remove(hc.getSeConnecter());*/
