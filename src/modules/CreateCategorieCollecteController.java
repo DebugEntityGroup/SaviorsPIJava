@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -173,7 +175,7 @@ public class CreateCategorieCollecteController implements Initializable {
             Connection cnx = mysqlConnect.getInstance().getCnx();
             Statement stm = cnx.createStatement();
             String req = "insert into categorie_collect(typeCategorie) values ('" + typeCategorie.getText() + "')";
-            if (typeCategorie.getText() != "") {
+            if (typeCategorie.getText().length() != 0 && validateCategorie()) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmer l'ajout ?");
                 alert.setHeaderText(null);
@@ -185,12 +187,25 @@ public class CreateCategorieCollecteController implements Initializable {
                     typeCategorie.setText("");
                     System.out.println("La Catégorie " + typeCategorie.getText() + "a été ajoutée avec succés !");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Champs requis !");
+            }
+            
+            if (typeCategorie.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Champ requis");
             }
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
             JOptionPane.showMessageDialog(null, "Cette Catégorie existe déjà !");
+        }
+    }
+    
+    private boolean validateCategorie() {
+        Pattern p = Pattern.compile("[A-Za-z]*");
+        Matcher m = p.matcher(typeCategorie.getText());
+        if (m.find() && m.group().equals(typeCategorie.getText())) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Entrez un type de Catégorie valide !");
+            return false;
         }
     }
 

@@ -239,6 +239,7 @@ public class CreateCollecteController implements Initializable {
 
     @FXML
     private void ajouterCollecteAction(ActionEvent event) throws Exception {
+
         try {
             Connection cnx = mysqlConnect.getInstance().getCnx();
             Statement stm = cnx.createStatement();
@@ -247,8 +248,9 @@ public class CreateCollecteController implements Initializable {
             if (rs.next()) {
                 int nbreAtteint = 0;
                 int nbreParticipants = 0;
+
                 String req2 = "insert into collectPending(user_id, nomCollecte, budgetCollecte, nombreAtteint, descriptionCollecte, nombreParticipantsCollecte, image, categorieCollect_typeCategorie) values ('" + rs.getInt("id") + "', '" + nomCollecte.getText() + "', '" + budgetCollecte.getText() + "', '" + nbreAtteint + "', '" + descriptionCollecte.getText() + "', '" + nbreParticipants + "', '" + imageName.getText() + "', '" + catFieldCollecte.getValue() + "')";
-                if (validateBudget()) {
+                if (validateBudget() && validateNomCollecte() && validateDescCollecte() && !imageName.getText().equals("Aucun fichier choisi") && nomCollecte.getText().length() != 0 && descriptionCollecte.getText().length() != 0 && Integer.parseInt(budgetCollecte.getText()) >= 1000) {
                     System.out.println("src/modules/images/" + imageName.getText());
                     stm.executeUpdate(req2);
                     File dir = new File("C:\\wamp64\\www\\symfony\\web\\uploads");
@@ -262,11 +264,34 @@ public class CreateCollecteController implements Initializable {
                     ImageIO.write(bimage, "png", outputFile);
                     outputFile2.delete();
                     JOptionPane.showMessageDialog(null, "Collecte ajoutée avec succés !");
+                    /*imageName.setText("Aucun fichier choisi");
+                    nomCollecte.setText("");
+                    budgetCollecte.setText("");
+                    descriptionCollecte.setText("");*/
+                }
+                
+                if (budgetCollecte.getText().equals("")&& !imageName.getText().equals("Aucun fichier choisi") && nomCollecte.getText().length() != 0 && descriptionCollecte.getText().length() != 0) {
+                    JOptionPane.showMessageDialog(null, "Vous avez encore un champs requis !");
+                }
+                if (imageName.getText().equals("Aucun fichier choisi") || nomCollecte.getText().length() == 0 || descriptionCollecte.getText().length() == 0 || budgetCollecte.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(null, "Champs requis !");
+                }
+
+                if (budgetCollecte.getText().length() != 0 && Integer.parseInt(budgetCollecte.getText()) < 0) {
+                    JOptionPane.showMessageDialog(null, "Budget négatif !");
+                }
+                
+                if (budgetCollecte.getText().length() != 0 && Integer.parseInt(budgetCollecte.getText()) == 0) {
+                    JOptionPane.showMessageDialog(null, "Budget nul !");
+                }
+                
+                if (budgetCollecte.getText().length() != 0 && Integer.parseInt(budgetCollecte.getText()) < 1000) {
+                    JOptionPane.showMessageDialog(null, "Le Budget minimal est 1000 TND ! !");
                 }
             }
 
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 
@@ -277,6 +302,28 @@ public class CreateCollecteController implements Initializable {
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Entrez un Budget valide !");
+            return false;
+        }
+    }
+    
+    private boolean validateNomCollecte() {
+        Pattern p = Pattern.compile("[A-Z][a-z]*");
+        Matcher m = p.matcher(nomCollecte.getText());
+        if (m.find() && m.group().equals(nomCollecte.getText())) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Entrez un nom de la Collecte valide ! (Commence par un MAJ)");
+            return false;
+        }
+    }
+    
+    private boolean validateDescCollecte() {
+        Pattern p = Pattern.compile("[A-Z][a-z]*");
+        Matcher m = p.matcher(descriptionCollecte.getText());
+        if (m.find() && m.group().equals(descriptionCollecte.getText())) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Entrez une description valide ! (Commence par un MAJ)");
             return false;
         }
     }

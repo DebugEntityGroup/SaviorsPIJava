@@ -115,7 +115,7 @@ public class ManageCollecteController implements Initializable {
         try {
             Connection cnx = mysqlConnect.getInstance().getCnx();
             Statement stm = cnx.createStatement();
-            String req = "select nomCollecte, budgetCollecte, nombreAtteint, descriptionCollecte, nombreParticipantsCollecte, categorieCollect_typeCategorie from collectPending;";
+            String req = "select c.nomCollecte, c.budgetCollecte, c.nombreAtteint, c.descriptionCollecte, c.nombreParticipantsCollecte, c.categorieCollect_typeCategorie from collectPending c, fos_user f where f.id = c.user_id";
             ResultSet rs = stm.executeQuery(req);
             for (int i = 0; i < rs.getMetaData().getColumnCount(); i++) {
                 final int j = i;
