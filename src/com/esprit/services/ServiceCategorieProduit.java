@@ -6,6 +6,7 @@
 package com.esprit.services;
 
 import com.esprit.models.CategorieProduit;
+import com.esprit.models.Produit;
 import com.esprit.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -67,8 +68,7 @@ public class ServiceCategorieProduit implements IService<CategorieProduit> {
             System.err.println(ex.getMessage());
         }
     }
-
-    @Override
+    
     public List<CategorieProduit> afficher() {
         List<CategorieProduit> list = new ArrayList<>();
 

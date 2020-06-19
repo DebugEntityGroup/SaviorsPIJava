@@ -91,12 +91,18 @@ public class DetailsCollecteController implements Initializable {
 
     @FXML
     private Label nbreParticipants;
+    
+    @FXML
+    private Label categorieCollecte;
 
     @FXML
     private Label userAssoc;
 
     @FXML
     private Label hiddenID;
+    
+    @FXML
+    private Label noMoreModified;
 
     @FXML
     private Label champsRequis;
@@ -124,6 +130,9 @@ public class DetailsCollecteController implements Initializable {
 
     @FXML
     private Button listComments;
+    
+    @FXML
+    private Button editCollecteBtn;
 
     @FXML
     private TextArea commentaireField;
@@ -141,6 +150,14 @@ public class DetailsCollecteController implements Initializable {
 
     ObservableList<String> modules = FXCollections.observableArrayList("Evenement", "Publication", "Réclamation", "Collecte", "Produit", "Forum");
 
+    public Label getNoMoreModified() {
+        return noMoreModified;
+    }
+
+    public void setNoMoreModified(Label noMoreModified) {
+        this.noMoreModified = noMoreModified;
+    }
+    
     public Label getUsernameLabel() {
         return usernameLabel;
     }
@@ -195,6 +212,55 @@ public class DetailsCollecteController implements Initializable {
 
     public void setCommentBtn(Button commentBtn) {
         this.commentBtn = commentBtn;
+    }
+
+    public Button getEditCollecteBtn() {
+        return editCollecteBtn;
+    }
+
+    public void setEditCollecteBtn(Button editCollecteBtn) {
+        this.editCollecteBtn = editCollecteBtn;
+    }
+    
+    @FXML
+    private void editInfoCollecte(ActionEvent event) throws Exception {
+        try {
+            exitAction();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modules/EditCollecte.fxml"));
+            Parent root = (Parent) loader.load();
+            EditCollecteController ec = loader.getController();
+            ec.getUsernameLabel().setText(usernameLabel.getText());
+            ec.setMyRole(myRole);
+            //ec.setImageCollect(collectImage);
+            ec.getImageCollect().setImage(collectImage.getImage());
+            ec.getNomCollecte().setText(nomCollecte.getText());
+            ec.getBudgetCollecte().setText(budgetCollecte.getText());
+            ec.getDescriptionCollecte().setText(descriptionCollecte.getText());
+            ec.getHiddenNC().setText(nomCollecte.getText());
+            ec.getCatFieldCollecte().getSelectionModel().select(categorieCollecte.getText());
+            ec.getImageView().setImage(collectImage.getImage());
+            Connection cnx = mysqlConnect.getInstance().getCnx();
+            Statement stm = cnx.createStatement();
+            String req = "select image from collectPending where nomCollecte = '" +nomCollecte.getText()+"'";
+            ResultSet rs = stm.executeQuery(req);
+            if (rs.next()) {
+                ec.getImageName().setText(rs.getString("image"));
+            }
+            
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(root);
+            Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
+            stage.getIcons().add(icon);
+            stage.setScene(scene);
+            Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+            scene.setCursor(new ImageCursor(mouseCursor));
+            stage.setTitle("Modifier la Collecte - Saviors");
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Erreur de chargement de page !");
+            System.out.println(e);
+        }
     }
 
     @FXML
@@ -295,11 +361,25 @@ public class DetailsCollecteController implements Initializable {
                 dc.getMoneyDonated().setDisable(true);
                 dc.getDonateButton().setDisable(true);
                 dc.getCancelButton().setDisable(true);
+                dc.getDeadC1().setVisible(true);
+                dc.getDeadC2().setVisible(true);
             } else {
                 dc.getCloseCollect().setVisible(false);
                 dc.getMoneyDonated().setDisable(false);
                 dc.getDonateButton().setDisable(false);
                 dc.getCancelButton().setDisable(false);
+            }
+            if (myRole.getText().equals("Association")) {
+                dc.getMoneyDonated().setDisable(true);
+                dc.getDonateButton().setDisable(true);
+                dc.getCancelButton().setDisable(true);
+                dc.getNoForAssoc().setVisible(true);
+                dc.getCloseCollect().setText("Collecte Clôturée");
+            }
+            
+            if (!myRole.getText().equals("Association")) {
+                dc.getDonsButton().setVisible(false);
+                dc.getListeDons().setVisible(false);
             }
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
@@ -537,6 +617,14 @@ public class DetailsCollecteController implements Initializable {
 
     public void setNbreParticipants(Label nbreParticipants) {
         this.nbreParticipants = nbreParticipants;
+    }
+
+    public Label getCategorieCollecte() {
+        return categorieCollecte;
+    }
+
+    public void setCategorieCollecte(Label categorieCollecte) {
+        this.categorieCollecte = categorieCollecte;
     }
 
     public Button getDonateDon() {

@@ -13,12 +13,23 @@ import java.util.Objects;
  */
 public class ProduitComment {
 
-    private int id;
+       private int id;
     private int user_id;
     private String content;
     private int produitPending_id;
+    private String username;
+    
     
     public ProduitComment() {
+    }
+
+    public ProduitComment(String content) {
+        this.content = content;
+    }
+
+    public ProduitComment(String content, String username) {
+        this.content = content;
+        this.username = username;
     }
 
     public ProduitComment(int user_id, String content, int produitPending_id) {
@@ -58,6 +69,14 @@ public class ProduitComment {
         this.id = id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getContent() {
         return content;
     }
@@ -68,8 +87,10 @@ public class ProduitComment {
 
     @Override
     public String toString() {
-        return "ProduitComment{" + "id=" + id + ", user_id=" + user_id + ", content=" + content + ", produitPending_id=" + produitPending_id + '}';
+        return  "publié par "+username+" : " + content ;
     }
+
+   
 
     @Override
     public int hashCode() {
@@ -109,6 +130,5 @@ public class ProduitComment {
     }
 
     
-
   
 }

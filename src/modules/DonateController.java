@@ -30,6 +30,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -93,6 +94,9 @@ public class DonateController implements Initializable {
 
     @FXML
     private Label closeCollect;
+    
+    @FXML
+    private Label noForAssoc;
 
     @FXML
     private Button saviorsLogo;
@@ -135,6 +139,12 @@ public class DonateController implements Initializable {
 
     @FXML
     private TextArea commentaireField;
+    
+    @FXML
+    private Line deadC1;
+    
+    @FXML
+    private Line deadC2;
 
     @FXML
     private ComboBox<String> action;
@@ -152,6 +162,46 @@ public class DonateController implements Initializable {
 
     ObservableList<String> modules = FXCollections.observableArrayList("Evenement", "Publication", "Réclamation", "Collecte", "Produit", "Forum");
 
+    public ListView getListeDons() {
+        return listeDons;
+    }
+
+    public void setListeDons(ListView listeDons) {
+        this.listeDons = listeDons;
+    }
+    
+    public Button getDonsButton() {
+        return donsButton;
+    }
+
+    public void setDonsButton(Button donsButton) {
+        this.donsButton = donsButton;
+    }
+    
+    public Label getNoForAssoc() {
+        return noForAssoc;
+    }
+
+    public void setNoForAssoc(Label noForAssoc) {
+        this.noForAssoc = noForAssoc;
+    }
+    
+    public Line getDeadC1() {
+        return deadC1;
+    }
+
+    public void setDeadC1(Line deadC1) {
+        this.deadC1 = deadC1;
+    }
+
+    public Line getDeadC2() {
+        return deadC2;
+    }
+
+    public void setDeadC2(Line deadC2) {
+        this.deadC2 = deadC2;
+    }
+    
     public Label getUsernameLabel() {
         return usernameLabel;
     }
@@ -399,8 +449,30 @@ public class DonateController implements Initializable {
                     donateButton.setDisable(true);
                     cancelButton.setDisable(true);
                 }*/
+                } else if (Integer.parseInt(moneyDonated.getText())<0) {
+                    JOptionPane.showMessageDialog(null, "Vous avez entré un montant négatif !");
+                    champsRequis.setVisible(false);
+                    moneyDonated.setStyle(
+                            "-fx-border-color: red;"
+                    );
                 }
-                if (rs.getInt("c.budgetCollecte") - rs.getInt("c.nombreAtteint") < 50) {
+                
+                else if (Integer.parseInt(moneyDonated.getText()) > rs.getInt("c.budgetCollecte")) {
+                    JOptionPane.showMessageDialog(null, "Vous avez contribué un montant supérieur au budget !");
+                    champsRequis.setVisible(false);
+                    moneyDonated.setStyle(
+                            "-fx-border-color: red;"
+                    );
+                    /*if (rs.getInt("c.budgetCollecte")-rs.getInt("c.nombreAtteint")<50) {
+                    //stm.executeUpdate(req2);
+                    JOptionPane.showMessageDialog(null, "Vous ne pouvez plus contribuer à cette Collecte !\n Elle est cloturée maintenant !");
+                    closeCollect.setVisible(true);
+                    moneyDonated.setDisable(true);
+                    donateButton.setDisable(true);
+                    cancelButton.setDisable(true);
+                }*/
+                }
+                else if (rs.getInt("c.budgetCollecte") - rs.getInt("c.nombreAtteint") < 50) {
                     //stm.executeUpdate(req2);
                     JOptionPane.showMessageDialog(null, "Vous ne pouvez plus contribuer à cette Collecte !\n Elle est cloturée maintenant !");
                     closeCollect.setVisible(true);
@@ -434,7 +506,7 @@ public class DonateController implements Initializable {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 

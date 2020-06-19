@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="285.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.DeleteProduitcontroller">
    <children>
-      <Pane prefHeight="95.0" prefWidth="447.0" style="-fx-background-color: black;">
+      <Pane prefHeight="95.0" prefWidth="447.0" style="-fx-background-color: #d598a3;">
          <children>
             <Label layoutX="162.0" layoutY="38.0" prefHeight="31.0" prefWidth="175.0" text="Supprimer " textFill="WHITE">
                <font>
@@ -28,12 +28,12 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="supprimer" layoutX="212.0" layoutY="243.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Supprimer" textFill="WHITE">
+      <Button fx:id="supprimer" layoutX="212.0" layoutY="243.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: #d598a3;" text="Supprimer" textFill="WHITE">
          <font>
             <Font name="Forte" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="anuuler" layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: black;" text="Annuler" textFill="WHITE">
+      <Button fx:id="anuuler" layoutX="329.0" layoutY="243.0" mnemonicParsing="false" onAction="#close" style="-fx-background-color: #d598a3;" text="Annuler" textFill="WHITE">
          <font>
             <Font name="Forte" size="16.0" />
          </font>
@@ -50,10 +50,3 @@
       </Text>
    </children>
 </AnchorPane>
-
-
-
-
-
-
-

@@ -66,7 +66,7 @@
       </Label>
       <AnchorPane layoutX="1.0" layoutY="319.0" prefHeight="448.0" prefWidth="1366.0" style="-fx-background-color: #F8F9FA;">
          <children>
-            <TableView fx:id="imagesCollects" layoutX="549.0" layoutY="24.0" prefHeight="200.0" prefWidth="260.0" />
+            <TableView fx:id="imagesCollects" layoutX="549.0" layoutY="24.0" prefHeight="200.0" prefWidth="290.0" />
             <ImageView fx:id="collectImage" fitHeight="168.0" fitWidth="260.0" layoutX="910.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="justCollecte" layoutX="927.0" layoutY="215.0" text="Collecte:" textFill="#2e004b" visible="false">
                <font>

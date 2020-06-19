@@ -99,7 +99,7 @@
                   <Font size="19.0" />
                </font>
             </Text>
-            <Text layoutX="883.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de Participants:">
+            <Text layoutX="883.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Nombre de Participants:">
                <font>
                   <Font size="19.0" />
                </font>
@@ -120,7 +120,7 @@
                <font>
                   <Font size="17.0" />
                </font></Label>
-            <Label fx:id="nbreParticipants" layoutX="1116.0" layoutY="237.0" text="Label">
+            <Label fx:id="nbreParticipants" layoutX="1116.0" layoutY="264.0" text="Label">
                <font>
                   <Font size="17.0" />
                </font></Label>
@@ -144,14 +144,30 @@
                   <Font size="21.0" />
                </font>
             </Label>
-            <TextArea fx:id="commentaireField" layoutX="883.0" layoutY="270.0" prefHeight="94.0" prefWidth="276.0" promptText="Publier un Commentaire" />
-            <Button fx:id="commentBtn" layoutX="883.0" layoutY="364.0" mnemonicParsing="false" onAction="#commenterAction" style="-fx-background-color: #17a2b8; -fx-border-color: white; -fx-font-weight: bold;" text="Commenter" textFill="WHITE" />
+            <TextArea fx:id="commentaireField" layoutX="883.0" layoutY="297.0" prefHeight="94.0" prefWidth="276.0" promptText="Publier un Commentaire" />
+            <Button fx:id="commentBtn" layoutX="883.0" layoutY="391.0" mnemonicParsing="false" onAction="#commenterAction" style="-fx-background-color: #17a2b8; -fx-border-color: white; -fx-font-weight: bold;" text="Commenter" textFill="WHITE" />
             <Label fx:id="champsRequis" layoutX="1079.0" layoutY="369.0" text="Champs requis" textFill="RED" visible="false" />
             <Button fx:id="listComments" layoutX="132.0" layoutY="194.0" mnemonicParsing="false" onAction="#listView" style="-fx-background-color: #28a745; -fx-border-color: white; -fx-font-weight: bold;" text="Liste des Commentaires" textFill="WHITE" />
             <Button fx:id="hideComments" layoutX="301.0" layoutY="194.0" mnemonicParsing="false" onAction="#hideComments" style="-fx-background-color: #dc3545; -fx-border-color: white; -fx-font-weight: bold;" text="Cacher les Commentaires" textFill="WHITE" visible="false" />
+            <Text layoutX="883.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Catégorie:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
+            <Label fx:id="categorieCollecte" layoutX="1116.0" layoutY="233.0" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label fx:id="test" layoutX="964.0" layoutY="269.0" text="Label" visible="false" />
       <Label fx:id="hiddenID" layoutX="1141.0" layoutY="213.0" text="Label" />
+      <Button fx:id="editCollecteBtn" layoutX="1231.0" layoutY="258.0" mnemonicParsing="false" onAction="#editInfoCollecte" prefHeight="33.0" prefWidth="85.0" style="-fx-font-weight: bold; -fx-background-color: #28a745; -fx-border-color: white;" text="Modifier" textFill="WHITE" visible="false" />
+      <Label fx:id="noMoreModified" layoutX="971.0" layoutY="269.0" style="-fx-font-weight: bold;" text="Collecte n'est plus Modifiable" textFill="#dc3545" visible="false">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

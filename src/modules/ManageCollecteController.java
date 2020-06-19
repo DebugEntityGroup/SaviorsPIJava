@@ -78,6 +78,22 @@ public class ManageCollecteController implements Initializable {
         this.usernameLabel = usernameLabel;
     }
 
+    public TableView getAllCollectes() {
+        return allCollectes;
+    }
+
+    public void setAllCollectes(TableView allCollectes) {
+        this.allCollectes = allCollectes;
+    }
+
+    public ObservableList<ObservableList> getData() {
+        return data;
+    }
+
+    public void setData(ObservableList<ObservableList> data) {
+        this.data = data;
+    }
+
     @FXML
     private void moduleAction(ActionEvent event) throws Exception {
         try {

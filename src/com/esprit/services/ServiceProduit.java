@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -25,7 +27,7 @@ public class ServiceProduit implements IService<Produit> {
     @Override
     public void ajouter(Produit t) {
         try {
-            String requete = "INSERT INTO ProduitPending (user_id,nom,image,prix,description,Categorie_nom) VALUES (?,?,?,?,?,?)";
+            String requete = "INSERT INTO ProduitPending (user_id,nomProduit,image,prix,description,Categorie_nom) VALUES (?,?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, t.getUser_id());
             pst.setString(2, t.getNom());
@@ -57,7 +59,7 @@ public class ServiceProduit implements IService<Produit> {
     @Override
     public void modifier(Produit t) {
         try {
-            String requete = "UPDATE ProduitPending SET user_id=?,nom=?,image=?,prix=?,description=?,Categorie_nom=? WHERE id=?";
+            String requete = "UPDATE ProduitPending SET user_id=?,nomProduit=?,image=?,prix=?,description=?,Categorie_nom=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(7, t.getId());
             pst.setInt(1, t.getUser_id());
@@ -74,24 +76,23 @@ public class ServiceProduit implements IService<Produit> {
         }
     }
 
-    @Override
-    public List<Produit> afficher() {
-        List<Produit> list = new ArrayList<>();
-
+    public ObservableList<Produit> afficher() {
+ObservableList<Produit> lista = FXCollections.observableArrayList();
         try {
             String requete = "SELECT * FROM ProduitPending";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Produit(rs.getInt("id"), rs.getInt("user_id"), rs.getString("nom"), rs.getString("image"), rs.getInt("prix"), rs.getString("description"), rs.getString("categorie_nom")));
+                lista.add(new Produit(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7)));
             }
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
-        return list;
+        return lista;
     }
+
 
     public Produit seulProduit(int id) {
         Produit produit = new Produit();
@@ -105,7 +106,7 @@ public class ServiceProduit implements IService<Produit> {
             while (rs.next()) {
                 produit.setId(rs.getInt("id"));
                 produit.setUser_id(rs.getInt("user_id"));
-                produit.setNom(rs.getString("nom"));
+                produit.setNom(rs.getString("nomProduit"));
                 produit.setImage(rs.getString("image"));
                 produit.setPrix(rs.getInt("prix"));
                 produit.setDescription(rs.getString("description"));
@@ -118,91 +119,5 @@ public class ServiceProduit implements IService<Produit> {
         return produit;
     }
 
-    public List<Produit> produitsParMC(String mc) {
-
-        String sql = "select * from ProduitPending P  inner join categorie C  on P.categorie_nom = C.nom "
-                + "where  P.nom like ? or C.nom like ? or C.description like ? order by P.prix asc ";
-        List<Produit> produits = new ArrayList<Produit>();
-        try {
-            PreparedStatement ps = cnx.prepareStatement(sql);
-            ps.setString(1, "%" + mc + "%");
-            ps.setString(2, "%" + mc + "%");
-            ps.setString(3, "%" + mc + "%");
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next() == false) {
-                System.out.println("Produit non trouvé -_- ");
-            } else {
-                do {
-                    Produit produit = new Produit();
-                    produit.setId(rs.getInt("id"));
-                    produit.setUser_id(rs.getInt("user_id"));
-                    produit.setNom(rs.getString("nom"));
-                    produit.setImage(rs.getString("image"));
-                    produit.setPrix(rs.getInt("prix"));
-                    produit.setDescription(rs.getString("description"));
-                    produit.setCategorie_nom(rs.getString("categorie_nom"));
-                    produits.add(produit);
-                } while (rs.next());
-            }
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return produits;
-    }
-
-    public List<Produit> TriAscendant() {
-        List<Produit> produits = new ArrayList<>();
-        Produit produit = new Produit();
-        try {
-            String requete = "SELECT * FROM `ProduitPending` order by prix";
-            PreparedStatement statement = this.cnx.prepareStatement(requete);
-            ResultSet results = statement.executeQuery();
-            while (results.next()) {
-                produit = new Produit(results.getInt("id"), results.getInt("user_id"), results.getString("nom"), results.getString("image"), results.getInt("prix"), results.getString("description"), results.getString("Categorie_nom"));
-                produits.add(produit);
-            }
-            statement.close();
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return produits;
-    }
-
-    public List<Produit> TriDescendant() {
-        List<Produit> produits = new ArrayList<>();
-        Produit produit = new Produit();
-        try {
-            String requete = "SELECT * FROM `ProduitPending` order by prix desc";
-            PreparedStatement stmt = this.cnx.prepareStatement(requete);
-            ResultSet results = stmt.executeQuery();
-            while (results.next()) {
-                produit = new Produit(results.getInt("id"), results.getInt("user_id"), results.getString("nom"), results.getString("image"), results.getInt("prix"), results.getString("description"), results.getString("Categorie_nom"));
-                produits.add(produit);
-            }
-            stmt.close();
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
-        return produits;
-    }
-
-    /* public int SumPrix(String categorie) {
-
-        int s = 0;
-        try {
-            String requete = "SELECT sum(prix)as p FROM ProduitPending where Categorie_nom like '%" + categorie + "%'";
-            PreparedStatement results = cnx.prepareStatement(requete);
-            ResultSet rs = results.executeQuery();
-            while (rs.next()) {
-                s = rs.getInt("p");
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return s;
-    }
-     */
- 
+    
 }

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -15,7 +16,7 @@
 
 <AnchorPane minHeight="300.0" minWidth="400.0" prefHeight="568.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.UpdateProduitController">
     <children>
-      <Pane prefHeight="91.0" prefWidth="400.0" style="-fx-background-color: black;">
+      <Pane prefHeight="91.0" prefWidth="400.0" style="-fx-background-color: #d598a3;">
          <children>
                 <Text fill="WHITE" layoutX="85.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Produit" wrappingWidth="250.0">
                <font>
@@ -31,19 +32,6 @@
       </Pane>
         <VBox alignment="CENTER" layoutY="74.0" prefHeight="342.0" prefWidth="390.0" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="74.0">
             <children>
-            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="390.0">
-               <children>
-                  <Label alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="75.0" text="User" />
-                  <TextField fx:id="user" prefHeight="25.0" prefWidth="247.0">
-                     <HBox.margin>
-                        <Insets left="9.0" />
-                     </HBox.margin>
-                  </TextField>
-               </children>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
                         <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Nom" />
@@ -54,13 +42,13 @@
                     </padding>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
-                    <children>
-                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Image" />
-                        <TextField fx:id="image" HBox.hgrow="ALWAYS" />
-                    </children>
                     <padding>
                         <Insets right="30.0" />
                     </padding>
+               <children>
+                  <Label fx:id="labelIMG" prefHeight="17.0" prefWidth="168.0" text="Choississez une nouvelle image" />
+                  <ImageView fx:id="imageV" fitHeight="95.0" fitWidth="149.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true" />
+               </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
                     <children>
@@ -91,7 +79,12 @@
                   </ComboBox>
                </children>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="155.0" style="-fx-background-color: black;" text="Update" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="155.0" style="-fx-background-color: #d598a3;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#Retouraffiche" prefHeight="35.0" prefWidth="174.0" style="-fx-background-color: #d598a3;" text="Retour a la liste" textFill="WHITE">
                <font>
                   <Font name="Forte" size="19.0" />
                </font>

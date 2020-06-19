@@ -8,10 +8,14 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SaviorsDA.jar" size="9046344" download="eager" />
+    <jar href="SaviorsDA.jar" size="19848481" download="eager" />
     <jar href="lib\apache-commons-lang.jar" size="284220" download="eager" />
+    <jar href="lib\fontawesomefx-8.5.jar" size="181458" download="eager" />
+    <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.19.jar" size="2356711" download="eager" />
+    <jar href="lib\sample.jar" size="4401" download="eager" />
+    <jar href="lib\zxing-2.1.jar" size="449685" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SaviorsDA" >
     <param name="requiredFXVersion" value="8.0+"/>

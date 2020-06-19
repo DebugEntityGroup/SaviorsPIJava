@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="300.0" minWidth="398.0" prefHeight="613.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.ModifierPublicationController">
+    <children>
+      <Pane prefHeight="91.0" prefWidth="812.0" style="-fx-background-color: gray;">
+         <children>
+            <Label fx:id="closeButton" layoutX="744.0" layoutY="5.0" onMouseClicked="#close" prefHeight="45.0" prefWidth="49.0" text="Retour" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+        <VBox alignment="CENTER" layoutX="12.0" layoutY="33.0" prefHeight="548.0" prefWidth="795.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="33.0">
+            <children>
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Publication" wrappingWidth="312.0">
+               <font>
+                  <Font name="Forte" size="32.0" />
+               </font>
+            </Text>
+            <HBox alignment="CENTER" prefHeight="38.0" prefWidth="390.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" minWidth="100.0" text="Titre" />
+                        <TextField fx:id="titre" prefHeight="25.0" prefWidth="695.0" HBox.hgrow="ALWAYS" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="94.0" prefWidth="440.0" spacing="10.0">
+                    <children>
+                  <Label fx:id="labelIMG" prefHeight="17.0" prefWidth="168.0" text="Choississez une nouvelle image" />
+                  <ImageView fx:id="imageV" fitHeight="95.0" fitWidth="149.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true" />
+                    </children>
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+                    <padding>
+                        <Insets right="30.0" />
+                    </padding>
+                </HBox>
+            <HBox alignment="CENTER" prefHeight="114.0" prefWidth="390.0">
+               <children>
+                  <Label alignment="TOP_RIGHT" contentDisplay="TOP" minWidth="91.0" prefHeight="105.0" prefWidth="99.0" text="Description" />
+                  <TextArea fx:id="description" prefHeight="37.0" prefWidth="627.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="9.0" />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+            </HBox>
+            <AnchorPane fx:id="ancorPane" prefHeight="115.0" prefWidth="512.0">
+               <children>
+                  <Label fx:id="videotitle" layoutX="155.0" layoutY="36.0" prefHeight="17.0" prefWidth="627.0" text="Path du video.." />
+                  <Button fx:id="video" layoutX="155.0" layoutY="61.0" mnemonicParsing="false" onAction="#uploadVideo" prefHeight="25.0" prefWidth="625.0" style="-fx-background-color: gray;" text="choisissez un video.." />
+                  <Label layoutX="65.0" layoutY="65.0" text="Video :" />
+               </children>
+            </AnchorPane>
+            <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
+            <Button mnemonicParsing="false" onAction="#update" prefHeight="31.0" prefWidth="155.0" style="-fx-background-color: Gray;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Button>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

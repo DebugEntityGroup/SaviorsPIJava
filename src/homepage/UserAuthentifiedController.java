@@ -1,6 +1,8 @@
 package homepage;
 
+import com.esprit.controllers.AffichagePubController;
 import com.esprit.controllers.ListProduitController;
+import controller.ListeEvenementController;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -90,6 +92,22 @@ public class UserAuthentifiedController implements Initializable {
                 stage.setTitle("Collecte - Saviors");
                 stage.show();
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
+            } else if (action.getValue() == "Publication") {
+                exitAction();
+                Stage pub = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/esprit/views/AffichagePublication.fxml"));
+                Parent root = (Parent) loader.load();
+                AffichagePubController apub = loader.getController();
+                apub.getUsernameLabel().setText(usernameLabel.getText());
+                apub.setMyRole(myRole);
+                Scene scene = new Scene(root);
+                pub.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
+                pub.initStyle(StageStyle.UNDECORATED);
+                pub.show();
+                pub.setResizable(false);
+                System.out.println("Consultation de la page \"Publication\" par " + usernameLabel.getText());
             } else if (action.getValue() == "Produit") {
                 exitAction();
                 Stage produits = new Stage();
@@ -97,6 +115,19 @@ public class UserAuthentifiedController implements Initializable {
                 Parent root = (Parent) loader.load();
                 ListProduitController lp = loader.getController();
                 lp.getUsernameLabel().setText(usernameLabel.getText());
+                lp.setMyRole(myRole);
+                if (myRole.getText() != "Fournisseur") {
+                    lp.getBtn().setVisible(false);
+                    lp.getBtnModifier().setVisible(false);
+                    lp.getBtnSupprimer().setVisible(false);
+                    lp.getBtnRetour().setVisible(false);
+                }
+                if(lp.getTable().getItems().size() == 0) {
+                    lp.getBtnDats().setVisible(false);
+                    lp.getBtnModifier().setVisible(false);
+                    lp.getBtnSupprimer().setVisible(false);
+                    lp.getSearch().setVisible(false);
+                }
                 Scene scene = new Scene(root);
                 produits.setScene(scene);
                 Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
@@ -105,7 +136,26 @@ public class UserAuthentifiedController implements Initializable {
                 produits.show();
                 produits.setResizable(false);
                 System.out.println("Consultation de la page \"Collecte\" par " + usernameLabel.getText());
-            } else {
+            } else if (action.getValue() == "Evenement") {
+                exitAction();
+               // Parent root = FXMLLoader.load(getClass().getResource("/gui/listeEvenement.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/listeEvenement.fxml"));
+                Parent root = (Parent) loader.load();
+                //ListeEvenementController le = loader.getController();
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.UNDECORATED);
+                Scene scene = new Scene(root);
+                Image icon = new Image(getClass().getResourceAsStream("/modules/images/saviorsIcon.png"));
+                stage.getIcons().add(icon);
+                stage.setScene(scene);
+                Image mouseCursor = new Image("/saviorsda/images/mouseCursor.png");
+                scene.setCursor(new ImageCursor(mouseCursor));
+                stage.setTitle("Evenements - Saviors");
+                stage.show();
+                System.out.println("Consultation de la page \"Evenement\" par " + usernameLabel.getText());
+            }
+            
+            else {
                 JOptionPane.showMessageDialog(null, "Ce module n'est pas encore réalisé !");
             }
         } catch (Exception e) {

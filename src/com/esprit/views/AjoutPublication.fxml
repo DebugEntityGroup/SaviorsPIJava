@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="493.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjoutPublicationController">
+   <children>
+      <BorderPane layoutX="35.0" layoutY="77.0" prefHeight="348.0" prefWidth="662.0">
+         <bottom>
+            <AnchorPane fx:id="ancorPane" prefHeight="122.0" prefWidth="156.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="videotitle" layoutX="155.0" layoutY="36.0" text="Path du video.." />
+                  <Button fx:id="video" layoutX="155.0" layoutY="61.0" mnemonicParsing="false" onAction="#uploadVideo" prefHeight="25.0" prefWidth="484.0" style="-fx-background-color: gray;" text="choisissez un video.." />
+                  <Label layoutX="65.0" layoutY="65.0" text="Video :" />
+               </children></AnchorPane>
+         </bottom>
+      </BorderPane>
+      <Label layoutX="87.0" layoutY="110.0" text="Titre :" />
+      <Label layoutX="85.0" layoutY="162.0" text="Description :" />
+      <Label layoutX="98.0" layoutY="282.0" text="Image :" />
+ 
+      <TextField fx:id="Titre" layoutX="161.0" layoutY="106.0" prefHeight="25.0" prefWidth="507.0" promptText="Titre..." />
+      <TextArea fx:id="Description" layoutX="162.0" layoutY="140.0" prefHeight="78.0" prefWidth="507.0" promptText="Description..." />
+      <Button fx:id="btn" layoutX="628.0" layoutY="429.0" mnemonicParsing="false" onAction="#AjouterPublication" prefHeight="42.0" prefWidth="81.0" style="-fx-background-color: Gray;" text="Publier" />
+      <Text layoutX="181.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Publication" wrappingWidth="356.55859375">
+         <font>
+            <Font name="Arial Black" size="33.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imageV" fitHeight="94.0" fitWidth="198.0" layoutX="161.0" layoutY="243.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="201.0" layoutY="282.0" text="choisissez un image.." />
+      <Button fx:id="btnRetour" layoutX="414.0" layoutY="429.0" mnemonicParsing="false" onAction="#Retouraffiche" prefHeight="17.0" prefWidth="209.0" style="-fx-background-color: Gray;" text="liste des publications">
+         <font>
+            <Font name="Forte" size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

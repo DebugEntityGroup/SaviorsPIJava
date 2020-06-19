@@ -5,6 +5,7 @@
  */
 package com.esprit.services;
 
+import com.esprit.models.Produit;
 import com.esprit.models.ProduitComment;
 import com.esprit.utils.DataSource;
 import java.sql.Connection;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 public class ServiceProduitComment implements IService<ProduitComment> {
 
+  
     Connection cnx = DataSource.getInstance().getCnx();
 
     @Override
@@ -70,18 +72,15 @@ public class ServiceProduitComment implements IService<ProduitComment> {
         }
     }
 
-    @Override
-    public List<ProduitComment> afficher() {
+    public List<ProduitComment> afficher(Produit p) {
         List<ProduitComment> list = new ArrayList<>();
-
         try {
-            String requete = "SELECT * FROM ProduitComment";
+            String requete = "SELECT *,username FROM fos_user u,ProduitComment p where p.user_id=u.id and "+ p.getId()+"=p.produitPending_id ";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new ProduitComment(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4)));
+                list.add(new ProduitComment(rs.getString("content"),rs.getString("username")));
             }
-
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }

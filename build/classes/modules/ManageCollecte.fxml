@@ -67,7 +67,7 @@
       </Label>
       <Button fx:id="creerCollecte" layoutX="912.0" layoutY="179.0" mnemonicParsing="false" onAction="#createCollecteAction" prefHeight="32.0" prefWidth="178.0" style="-fx-background-color: #4f3d40; -fx-border-color: white; -fx-font-weight: bold;" styleClass="gererCollecte" stylesheets="@../saviorsda/styles.css" text="Créer une nouvelle Collecte" textFill="WHITE" />
       <Button fx:id="creerCategorie" layoutX="1128.0" layoutY="179.0" mnemonicParsing="false" onAction="#createCategorieAction" prefHeight="32.0" prefWidth="186.0" style="-fx-background-color: #4a4f1f; -fx-border-color: white; -fx-font-weight: bold;" styleClass="gererCollecte" stylesheets="@../saviorsda/styles.css" text="Créer une nouvelle Catégorie" textFill="WHITE" />
-      <TableView fx:id="allCollectes" layoutX="77.0" layoutY="300.0" prefHeight="332.0" prefWidth="782.0" />
+      <TableView fx:id="allCollectes" layoutX="77.0" layoutY="300.0" prefHeight="332.0" prefWidth="759.0" />
       <Label fx:id="noCollects" layoutX="77.0" layoutY="234.0" style="-fx-font-weight: bold; -fx-font-size: 32;" text="Aucune Collecte n'a été ajoutée" textFill="#2e004b" visible="false">
          <font>
             <Font size="35.0" />

@@ -154,6 +154,14 @@ public class CollecteController implements Initializable {
                                             dc.getNomCollecte().setText(rs.getString("c.nomCollecte"));
                                             dc.getDescriptionCollecte().setText(rs.getString("c.descriptionCollecte"));
                                             dc.getUserAssoc().setText(rs.getString("f.username"));
+                                            if (usernameLabel.getText().equals(rs.getString("f.username"))) {
+                                                dc.getEditCollecteBtn().setVisible(true);
+                                                if (rs.getInt("c.budgetCollecte") - rs.getInt("c.nombreAtteint") < 50) {
+                                                    dc.getEditCollecteBtn().setDisable(true);
+                                                    dc.getNoMoreModified().setVisible(true);
+                                                }
+                                            }
+                                            dc.getCategorieCollecte().setText(rs.getString("c.categorieCollect_typeCategorie"));
                                             String hiddenID = String.valueOf(rs.getInt("c.id"));
                                             dc.getHiddenID().setText(hiddenID);
                                             dc.getHiddenID().setVisible(false);
@@ -161,7 +169,7 @@ public class CollecteController implements Initializable {
                                             int n = rs.getInt("c.nombreAtteint");
                                             int nbreParticipantsCollecte = rs.getInt("c.nombreParticipantsCollecte");
                                             if (myRole.getText().equals("Association")) {
-                                                dc.getDonateDon().setVisible(false);
+                                                dc.getDonateDon().setText("Dons");
                                                 dc.getCommentaireField().setVisible(false);
                                                 dc.getCommentBtn().setVisible(false);
                                             } else {

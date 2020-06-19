@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifiEvenementController">
+    <stylesheets>
+        <URL value="@modifievenement.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="48.0" layoutY="57.0" text="titre" textFill="#ee7070" />
+      <Label layoutX="48.0" layoutY="115.0" text="lieu" textFill="#ee7070" />
+      <Label layoutX="37.0" layoutY="192.0" prefHeight="17.0" prefWidth="61.0" text="Date event" textFill="#ee7070" />
+      <Label layoutX="37.0" layoutY="257.0" text="Description" textFill="#ee7070" />
+      <TextField fx:id="titre" layoutX="113.0" layoutY="53.0" />
+      <TextField fx:id="lieu" layoutX="113.0" layoutY="111.0" />
+      <TextField fx:id="dd" layoutX="113.0" layoutY="188.0" />
+      <TextField fx:id="df" layoutX="113.0" layoutY="253.0" />
+      <Button fx:id="m" layoutX="399.0" layoutY="333.0" mnemonicParsing="false" onAction="#modif" text="modifier" textFill="#ee7070" />
+   </children>
+</AnchorPane>

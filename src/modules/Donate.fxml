@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -151,16 +152,23 @@
                   <Button fx:id="donateButton" layoutX="31.0" layoutY="116.0" mnemonicParsing="false" onAction="#donateAction" style="-fx-background-color: #17a2b8; -fx-font-weight: bold;" text="Donate" textFill="WHITE" />
                   <Button fx:id="cancelButton" layoutX="98.0" layoutY="116.0" mnemonicParsing="false" onAction="#resetAction" style="-fx-background-color: #dc3545; -fx-font-weight: bold;" text="Annuler" textFill="WHITE" />
                   <Label fx:id="champsRequis" layoutX="218.0" layoutY="103.0" text="champs requis" textFill="RED" visible="false" />
+                  <Line fx:id="deadC1" endX="213.0" endY="142.0" layoutX="193.0" layoutY="48.0" startX="-184.0" startY="-41.0" stroke="#dc3545" visible="false" />
+                  <Line fx:id="deadC2" endX="166.70703125" endY="-104.70709228515625" layoutX="240.0" layoutY="111.0" startX="-233.0" startY="83.0" stroke="#dc3545" visible="false" />
                </children>
             </AnchorPane>
             <Button fx:id="donsButton" layoutX="510.0" layoutY="282.0" mnemonicParsing="false" onAction="#allDonatesAction" style="-fx-background-color: #28a745; -fx-border-color: white; -fx-font-weight: bold;" text="Dons Contribués" textFill="WHITE" />
             <Button fx:id="hideDons" layoutX="641.0" layoutY="282.0" mnemonicParsing="false" onAction="#hideDonsAction" style="-fx-background-color: #dc3545; -fx-border-color: white; -fx-font-weight: bold;" text="Cacher les Dons" textFill="WHITE" visible="false" />
             <ListView fx:id="listeDons" layoutX="950.0" layoutY="282.0" prefHeight="108.0" prefWidth="310.0" style="-fx-border-color: none;" />
+            <Label fx:id="noForAssoc" layoutX="951.0" layoutY="19.0" prefHeight="25.0" prefWidth="310.0" style="-fx-font-weight: bold;" text="Espace non réservé pour les Associations" textFill="#dc3545" visible="false">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label fx:id="test" layoutX="964.0" layoutY="269.0" text="Label" visible="false" />
       <Label fx:id="hiddenID" layoutX="1141.0" layoutY="213.0" text="Label" />
-      <Label fx:id="closeCollect" layoutX="940.0" layoutY="259.0" prefHeight="38.0" prefWidth="403.0" text="Nous avons clotûré cette Collecte !" textFill="RED" visible="false">
+      <Label fx:id="closeCollect" layoutX="940.0" layoutY="259.0" prefHeight="38.0" prefWidth="403.0" text="Nous avons clotûré cette Collecte !" textFill="#dc3545" visible="false">
          <font>
             <Font size="26.0" />
          </font>

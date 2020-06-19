@@ -2,6 +2,29 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ListeEvenementController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ListViewEvent.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/com/esprit/controllers/DeleteProduitcontroller.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/EventItemController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ShowEventClientController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/AddComment.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ShowDetailsEventController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/CommentItem.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/ShowEventClient.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/AddCommentController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/CommentItemController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ListViewCommentEvent.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/UpdateCommentController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/AjoutEvenementController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/UpdateComment.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/AjoutEvenement.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/service/CommentService.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/controller/ModifiEvenementController.java</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/EventItem.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/ShowDetailsEvent.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/listeEvenement.fxml</file>
+            <file>file:/C:/Users/sof_r/Documents/NetBeansProjects/SaviorsDA/src/gui/ModifiEvenement.fxml</file>
+        </group>
     </open-files>
 </project-private>

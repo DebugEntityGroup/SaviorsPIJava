@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="300.0" minWidth="395.0" prefHeight="687.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.OnePublicationAfficheController">
+    <children>
+      <ImageView fx:id="image" fitHeight="158.0" fitWidth="233.0" layoutX="355.0" layoutY="95.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="176.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre :" wrappingWidth="57.00000047683716">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Text>
+     
+     
+      <Text fx:id="titre" layoutX="282.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre " wrappingWidth="212.00000885128975">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Text>
+
+      <Text fx:id="description" layoutX="302.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" wrappingWidth="193.13671875">
+         <font>
+            <Font name="Forte" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="176.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Video :" wrappingWidth="57.00000047683716">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="143.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" wrappingWidth="100.00000047683716">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Text>
+          <Text fill="#171717" layoutX="328.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Publication" textAlignment="CENTER" wrappingWidth="250.0">
+              <font>
+                  <Font name="Segoe UI Black" size="32.0" />
+              </font>
+          </Text>
+      <Button fx:id="retour" layoutX="713.0" layoutY="622.0" mnemonicParsing="false" onAction="#close" prefHeight="39.0" prefWidth="125.0" style="-fx-background-color: Gray;" text="liste publication" />
+      <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" layoutX="243.0" layoutY="286.0" />
+      <TextArea fx:id="tfCommentaire" layoutX="267.0" layoutY="479.0" prefHeight="79.0" prefWidth="426.0" />
+      <Text layoutX="152.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Commenter :" wrappingWidth="106.13671590108424">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn" layoutX="702.0" layoutY="510.0" mnemonicParsing="false" onAction="#Comment" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: gray;" text="Publier" />
+    </children>
+</AnchorPane>

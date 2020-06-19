@@ -12,31 +12,27 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="552.0" prefWidth="463.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.controllers.AjoutProduitController">
-
-      <Label layoutX="77.0" layoutY="110.0" text="User :" />
-      <Label layoutX="75.0" layoutY="162.0" text="Nom :" />
-      <Label layoutX="72.0" layoutY="226.0" text="Image :" />
-      <Label layoutX="77.0" layoutY="304.0" text="Prix :" />
-      <Label layoutX="56.0" layoutY="360.0" text="Description :" />
-      <Label layoutX="60.0" layoutY="449.0" text="Categorie :" />
-      <TextField fx:id="tfUser_id" layoutX="151.0" layoutY="106.0" prefHeight="25.0" prefWidth="198.0" promptText="ID de l'utilisateur..." />
-      <TextField fx:id="tfNom" layoutX="151.0" layoutY="158.0" prefHeight="25.0" prefWidth="198.0" promptText="nom du produit..." />
-      <TextField fx:id="tfPrix" layoutX="148.0" layoutY="300.0" prefHeight="25.0" prefWidth="198.0" promptText="prix du produit..." />
-      <TextArea fx:id="tfDescription" layoutX="149.0" layoutY="342.0" prefHeight="78.0" prefWidth="198.0" promptText="Description..." />
-      <ComboBox fx:id="tfCategorie_nom" layoutX="149.0" layoutY="445.0" prefHeight="25.0" prefWidth="198.0" promptText="choisir une catégorie..." />
-      <Button fx:id="btn" layoutX="346.0" layoutY="504.0" mnemonicParsing="false" onAction="#AjouterProduit" style="-fx-background-color: black;" text="Enregistrer" textFill="WHITE">
+      <Label layoutX="88.0" layoutY="124.0" text="Nom :" />
+      <Label layoutX="85.0" layoutY="188.0" text="Image :" />
+      <Label layoutX="90.0" layoutY="266.0" text="Prix :" />
+      <Label layoutX="69.0" layoutY="322.0" text="Description :" />
+      <Label layoutX="73.0" layoutY="411.0" text="Categorie :" />
+      <TextField fx:id="tfNom" layoutX="164.0" layoutY="120.0" prefHeight="25.0" prefWidth="198.0" promptText="nom du produit..." />
+      <TextField fx:id="tfPrix" layoutX="161.0" layoutY="262.0" prefHeight="25.0" prefWidth="198.0" promptText="prix du produit..." />
+      <TextArea fx:id="tfDescription" layoutX="162.0" layoutY="304.0" prefHeight="78.0" prefWidth="198.0" promptText="Description..." />
+      <ComboBox fx:id="tfCategorie_nom" layoutX="162.0" layoutY="407.0" prefHeight="25.0" prefWidth="198.0" promptText="choisir une catégorie..." />
+      <Button fx:id="btn" layoutX="346.0" layoutY="504.0" mnemonicParsing="false" onAction="#AjouterProduit" style="-fx-background-color: #d598a3;" text="Enregistrer" textFill="WHITE">
                <font>
                   <Font name="Forte" size="19.0" />
                </font>
             </Button>
-      <Button fx:id="btnRetour" layoutX="171.0" layoutY="504.0" mnemonicParsing="false" onAction="#Retouraffiche" style="-fx-background-color: black;" text="Retour a la liste" textFill="WHITE">
+      <Button fx:id="btnRetour" layoutX="171.0" layoutY="504.0" mnemonicParsing="false" onAction="#Retouraffiche" style="-fx-background-color: #d598a3;" text="Retour a la liste" textFill="WHITE">
                <font>
                   <Font name="Forte" size="19.0" />
                </font>
             </Button>
-      <ImageView fx:id="imageV" fitHeight="94.0" fitWidth="198.0" layoutX="152.0" layoutY="194.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="191.0" layoutY="226.0" text="Choississez une image" />
-   <Pane prefHeight="91.0" prefWidth="463.0" style="-fx-background-color: black;">
+      <ImageView fx:id="imageV" fitHeight="94.0" fitWidth="198.0" layoutX="165.0" layoutY="156.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true" />
+   <Pane prefHeight="91.0" prefWidth="463.0" style="-fx-background-color: #d598a3;">
       <children>
          <Text fill="WHITE" layoutX="110.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Produit" wrappingWidth="304.0">
             <font>
@@ -45,5 +41,6 @@
          </Text>
       </children>
    </Pane>
+   <Label fx:id="labelIMG" layoutX="205.0" layoutY="195.0" text="Choississez une image" />
 
 </AnchorPane>

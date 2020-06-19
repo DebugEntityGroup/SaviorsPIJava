@@ -1,0 +1,125 @@
+.table-view, .tree-table-view {
+    /* Constants used throughout the tableview. */
+    -fx-table-header-border-color: transparent;
+    -fx-table-cell-border-color: -fx-box-border; /* Horizontal Lines*/
+    -fx-background-color: transparent;
+}
+
+/* The column header row is made up of a number of column-header, one for each
+   TableColumn, and a 'filler' area that extends from the right-most column
+   to the edge of the tableview, or up to the 'column control' button. */
+.table-view .filler, .tree-table-view .filler, .table-view .column-header,
+.tree-table-view .column-header {
+    -fx-size: 65;
+    -fx-border-style: null;
+    -fx-border-width: 0 0 2 0;
+    -fx-background-color: transparent;
+}
+
+.table-view .show-hide-columns-button, .tree-table-view .show-hide-columns-button
+{
+    -fx-background-color: transparent;
+}
+.table-view{
+   -fx-background-color: transparent;
+}
+
+.table-view .column-header .label, .table-view .filler .label,
+.table-view .column-drag-header .label, .tree-table-view .column-header .label,
+.tree-table-view .filler .label, .tree-table-view .column-drag-header .label
+{
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .column-header-background, .tree-table-view .column-header-background
+{
+    -fx-background-color: transparent;
+}
+
+.table-row-cell, .tree-table-row-cell {
+    -fx-cell-size: 40px;
+}
+
+.table-cell {
+    -fx-border-color: transparent; /* Vertical Lines*/
+    -fx-border-width: 1;
+}
+.table-row-cell:filled:selected {
+    -fx-background-color:linear-gradient(gray,#d598a3);
+}
+.tab-pane {
+     -fx-tab-min-height: 9em;
+    -fx-tab-max-height: 9em;
+    -fx-tab-min-width: 4em;
+    -fx-tab-max-width: 4em;
+    -fx-padding: 0 -1 -1 0
+}
+
+.tab{
+    -fx-background-color: #d598a3;
+}
+
+.tab-header-background{
+    -fx-background-color: #d598a3;
+}
+
+.tab-label{
+    -fx-text-fill: -fx-secondary;
+    -fx-font-size: 10pt; 
+    -fx-alignment: center;
+}
+
+
+.tab-main{
+    -fx-pref-height : 60;
+    -fx-max-height : 60;
+}
+
+.settings-tab{
+    -fx-background-color: derive(-fx-primary, 10%);
+    -fx-padding: 5px 20px 5px 20px;
+}
+
+.settings-tab:selected{
+    -fx-background-color: -fx-secondary;
+}
+
+.settings-tab:selected .tab-label{
+    -fx-text-fill: -fx-secondary;
+}
+
+.settings-tab .tab-header-background{
+    -fx-background-color: derive(-fx-primary, -50%);
+}
+
+/*scroll bar*/
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: 0.0;
+    -fx-padding: 0.0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow, 
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0.0;
+    -fx-background-insets: 0.0;
+    -fx-padding: 0.0;
+    -fx-shape: null;
+}
+
+/*hover*/
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: derive(#d598a3 , 70%);
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.table-view:focused .table-row-cell:filled:selected {
+    -fx-background-color: #d598a3 ;
+    -fx-background-insets: 0.0, 0.0 0.0 0.0 0.0;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-table-cell-border-color: #d598a3;
+}
